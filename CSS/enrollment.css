@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+*{
+    font-family: 'Gowun Dodum', sans-serif;
+    text-decoration: none;
+    list-style:none;
+    color:#fff;
+    margin: 0;
+    padding:0;
+}
+
+body{
+    background-color: #fff;
+}
+
+.menu{
+    display: flex;
+    width: 100%;
+    margin:auto;
+    height:75px;
+    background-color:#2db18c;
+}
+
+.nav1{
+    display: flex;
+    justify-content:flex-end;
+    width:1000px;
+    line-height:75px;
+}
+
+.nav1 > li{
+    width: 200px;
+    text-align:center;
+    font-size:17px;
+    font-weight:bold;
+}
+
+.nav1 > li:hover{
+    background-color: #298168;
+}
+
+.nav1 > li > a{
+    display: block;
+}
+
+.nav1 > li:hover > .nav2{
+    display: block;
+}
+
+.nav2{
+    margin: 0px;
+    display: none;
+}
+
+.nav2 > li{
+    line-height:50px;
+    background:#2db18c86;
+    font-weight:lighter;
+    font-size: 16px;
+}
+
+.nav2 a:hover{
+    text-decoration: underline;
+}
+
+.sidebar{
+    position: fixed;
+    left:0;
+    width: 220px;
+    height:100%;
+    background-color: #298168;
+}
+
+.sidebar > header{
+    font-size:25px;
+    font-weight:bold;
+    text-align: center;
+    line-height:100px;
+    background-color:#30977a;
+
+}
+
+.sidebar > ul a{
+    display:block;
+    height:100%;
+    width:100%;
+    line-height:45px;
+    font-size: 15px;
+    padding-top: 20px;
+    padding-left: 30px;
+}
+
+.sidebar > ul >li:hover a{
+    text-decoration: underline;
+}
+

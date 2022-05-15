@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+*{
+    font-family: 'Gowun Dodum', sans-serif;
+    text-decoration: none;
+    list-style:none;
+    color:#fff;
+    margin: 0;
+    padding:0;
+}
+

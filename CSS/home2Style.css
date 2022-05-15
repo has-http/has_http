@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+*{
+    font-family: 'Gowun Dodum', sans-serif;
+    margin:0px;
+    padding:0px;
+    list-style: none;
+    text-decoration: none;
+    border-collapse: collapse;
+    color:#fff;
+}
+
+body{
+    background-color:#2db18c;
+}
+
+.menu{
+    display: flex;
+    width: 100vw;
+    min-width:1280px;
+    height:75px;
+    background-color: #2db18c;
+}
+
+.menu img{
+    width:270px;
+    height:75px;
+    margin-left:20px;
+}
+
+
+.nav1{
+    display: flex;
+    justify-content:flex-end;
+    width:1000px;
+    line-height:75px;
+}
+
+.nav1 > li{
+    width: 200px;
+    text-align:center;
+    font-size:17px;
+    font-weight:bold;
+}
+
+.nav1 > li:hover{
+    background-color: #298168;
+}
+
+.nav1 > li > a{
+    display: block;
+}
+
+.nav1 > li:hover > .nav2{
+    display: block;
+    
+}
+
+
+.nav2{
+    margin: 0px;
+    display: none;
+    position: relative;
+    z-index: 2;
+}
+
+.nav2 > li{
+    line-height:50px;
+    font-weight: lighter;
+    background:#2db18c86;
+    font-size:16px;
+    z-index: 2; 
+}
+
+.nav2 a:hover{
+    text-decoration: underline;
+}
+
+.banner{
+    position: relative;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.banner > .inner-list {
+    display: flex;
+    transition: .5s ease-out;
+}
+
+.banner img{
+    width: 100%;
+    height: 100%;
+    /*height: auto; */
+}
+
+.banner .circles{
+    display: flex;
+    justify-content: center;
+}
+
+.banner .circle{
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: rgb(255, 255, 255);
+    padding: 5px;   
+    background-clip: content-box;
+    cursor: pointer;
+}
+
+.banner .showing_circle{
+    background-color: blue;
+}
+
+.information {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.information table{
+    width: 700px;
+}
+
+.information td {
+    color: #000000;
+}
+
+.information th{
+    height: 30px;
+    color: white;
+    background: #44494d;
+    font-weight: normal;
+
+}
+
+.information .num{
+    width: 40px;
+}
+
+.information .title{
+    width: auto; 
+}
+
+.information .date{
+    width: 100px;
+}
+
+.information .period{
+    width: 50px;
+}
+
+.information caption{
+    font-weight: bold;
+    font-size: 17px;
+    padding: 5px;
+}
+
+.subject_table{
+    padding: 30px;
+}
+
+.notice{
+    display: flex;
+    padding: 30px;
+}

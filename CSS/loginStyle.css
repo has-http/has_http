@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Gaegu&family=Noto+Sans+KR&family=Noto+Serif+KR:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+*{
+    font-family: 'Gowun Dodum', sans-serif;
+    box-sizing: border-box;
+}
+
+body{
+    margin:0;
+    background-color: #2db18c;
+    text-align:center;
+}
+h1{
+    font-family: 'Gaegu', cursive;
+    margin-top:150px;
+    margin-bottom: 0px;
+    color:#fff;
+    font-size:50px
+}
+
+h2{
+    font-family: 'Gaegu', cursive;
+    margin-top:0px;
+    color:#fff;
+    font-size:25px;
+}
+
+
+.login{
+    width:300px;
+    background-color: #fff;
+    margin: 20px auto auto auto;
+    border-radius:10px;
+    padding: 20px;
+}
+
+.g_id_signin{
+    padding-top: 10px;
+    padding-bottom: 5px;
+    margin: 0 auto;
+    position: relative;
+    height: 44px;
+    width: 64px;
+
+}
+
+.text-field{
+    font-size:14px;
+    background-color:#00a88f17;
+    border: 0px;
+    padding:10px;
+    border-radius:5px;
+    margin-bottom:10px;
+    width:100%;
+    text-align: left;
+}
+
+.submit-btn{
+    font-size: 14px;
+    background-color: #2db18c;
+    color:white;
+    width:100%;
+    margin: auto auto 10px auto;
+    border: 0;
+    padding: 10px;
+    border-radius: 5px;
+    text-align:center;
+}
+
+.links{
+    text-align:center;
+}
+
+.links a{
+    font-size:12px;
+    color:#9b9b9bc3;
+    margin: auto auto 5px 10px;
+}

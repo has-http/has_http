@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+*{
+    font-family: 'Gowun Dodum', sans-serif;
+    text-decoration: none;
+    list-style:none;
+    color:#fff;
+    margin: 0;
+    padding:0;
+}
+
+body{
+    position: relative;
+    background-color: rgb(241, 241, 224);
+}
+
+.sidebar{
+    position: relative;
+    left:0;
+    width: 220px;
+    height:100vh;
+    background-color: #298168;
+}
+
+.sidebar > header{
+    font-size:25px;
+    font-weight:bold;
+    text-align: center;
+    line-height:100px;
+    background-color:#30977a;
+
+}
+
+.sidebar > ul a{
+    display:block;
+    height:100%;
+    width:100%;
+    line-height:45px;
+    font-size: 15px;
+    padding-top: 30px;
+    padding-left: 30px;
+    z-index:100;
+}
+
+.sidebar > ul >li:hover a{
+    text-decoration: underline;
+    z-index:100;
+
+}
+
+.main{
+    position: absolute;
+    top:75px;
+    left:220px;
+    height: auto;
+}
+
+h1{
+    font-size: 20px;
+    margin: 60px auto 50px 60px;
+    color:#000;
+}
+
+.choose_subj{
+    display:block;
+}
+
+.check_subj{
+    display: block;
+    color:#000;
+    padding-top: 50px;
+    margin-bottom: 50px;
+}
+
+.main .choose_subj > ul > li{
+    width: 220px;
+    height: 30px;
+    margin: 10px 50px 35px 60px;
+    border-radius:5px;
+    background-color: #30977a;
+    text-align:center;
+    float:left;
+    cursor: pointer;
+}
+
+
+
+
+.choose_class table{
+    border-collapse: collapse;
+    height: auto;
+    width: 965px;
+    margin-left:60px;
+    word-break:break-all;
+    margin-top:60px;
+}
+
+.choose_class table td{
+    text-align: center;
+}
+
+.choose_class .class_num{
+    width: 40px;
+}
+
+.choose_class .time{
+    width: auto;
+}
+
+.choose_class .last_num{
+    width: 150px;
+}
+
+.choose_class .condition{
+    width: 150px;
+}
+
+.choose_class .summit{
+    width: 40px;
+}
+
+.choose_class #submit_input {
+    background-color: #30977a;
+    font-weight:bold;
+    margin: 0 auto;
+    position: absolute;
+    left: 500px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+
+
+table{
+    border-collapse: collapse;
+    margin-left:60px;
+    width:120px;
+    margin-top:60px;
+}
+
+td{
+    border: 1px solid #333;
+    color:#000;
+}
+

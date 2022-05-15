@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+*{
+    font-family: 'Gowun Dodum', sans-serif;
+    text-decoration: none;
+    list-style:none;
+    color:#fff;
+    margin: 0;
+    padding:0;
+}
+
+.qna-heading{
+    padding: 20px 60px;
+}
+
+.qna-container{
+    width:1000px;
+    display:flex;
+    justify-content:center;
+    flex-direction:column;
+}
+
+.hr-line{
+    width: 80%;
+    margin: auto;
+}
+
+.qna-page{
+    color:#444;
+    cursor: pointer;
+    padding: 30px 20px;
+    width:70%;
+    border:none;
+    outline:none;
+    transition:0.4s;
+    margin:auto;
+}
+
+.qna-body{
+    color:red;
+    margin:auto;
+    width:70%;
+    padding:auto;
+}
+
+.active,
+.qna-page:hover{
+    background-color:#F9F9F9;
+}
+
+.qna-body{
+    color:red;
+    padding: 0 18px;
+    background-color:rgba(68, 68, 68, 0.538);
+    display:none;
+    overflow:hidden;
+}
+
+.qna-page:after{
+    color:red;
+
+    content:"\2796";
+}
