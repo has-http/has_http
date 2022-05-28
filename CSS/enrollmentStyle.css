@@ -72,6 +72,19 @@ h1{
     margin-bottom: 50px;
 }
 
+.check_subj  table {
+    border-collapse: collapse;
+    height: auto;
+    width: 965px;
+    margin-left:60px;
+    word-break:break-all;
+    margin-top:60px;
+}
+
+.check_subj td{
+    width: auto;
+}
+
 .main .choose_subj > ul > li{
     width: 220px;
     height: 30px;
@@ -123,7 +136,7 @@ h1{
     background-color: #30977a;
     font-weight:bold;
     margin: 0 auto;
-    position: absolute;
+    position: relative;
     left: 500px;
     margin-top: 20px;
     cursor: pointer;
@@ -142,4 +155,6 @@ td{
     border: 1px solid #333;
     color:#000;
 }
+
+
 

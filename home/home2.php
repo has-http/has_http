@@ -91,7 +91,7 @@
                 </thhead>
     
                 <tbody>
-                    <script>
+                    <!--<script>
                         
                         for (var i = 1; i<=7; i++){
                             document.write('<tr align="center" bgcolor="white">');
@@ -103,6 +103,12 @@
                         }
                         
                     </script>
+                    -->
+
+                    <?php
+                        require("../lib/sub_list.php");
+                        writeSubjectTable($_COOKIE['id']);
+                    ?>
                     
                    
                 </tbody>

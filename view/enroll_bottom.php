@@ -14,7 +14,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <script type="text/javascript">
+                    <!--<script type="text/javascript">
                         for(var i=0; i<7;i++){
                             document.write("<tr>");
                             for(var j=0; j<6; j++){
@@ -23,6 +23,14 @@
                             document.write("</tr>");
                         }
                     </script>
+                    -->
+
+                    <?php
+                        require_once("../lib/sub_list.php");
+                        writeSubjectTable($_COOKIE['id']);
+                    ?>
+
+                    
                 </tbody>
             </table>
         </div>
