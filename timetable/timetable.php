@@ -14,7 +14,7 @@
         <header> 시간표 </header>
         <ul>
             <li><a href="timetable.php">시간표 및 강의계획</a></li>
-            <li><a href="#">시간표 조합 생성</a></li>
+            <li><a href="make_timetable.php">시간표 조합 생성</a></li>
         </ul>
     </div>
     <div class="main">

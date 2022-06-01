@@ -55,8 +55,7 @@ function get_block($id) {
     return $block;
 }
 
-function writeSubjectTable($id) {  // block 리스트 기반 table 작성
-    $block = get_block($id);
+function writeSubjectTable($block) {  // block 리스트 기반 table 작성
     for ($i=0; $i<7; $i++){
         echo "<tr><td>".($i+1)."교시 </td>";
         for ($j=0; $j<5; $j++){
