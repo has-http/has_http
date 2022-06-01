@@ -109,10 +109,7 @@
                         require("../lib/sub_list.php");
                         writeSubjectTable($_COOKIE['id']);
                     ?>
-                    
-                   
                 </tbody>
-    
             </table>
     
     

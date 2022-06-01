@@ -1,4 +1,5 @@
 <?php
+require_once('utill.php');
 function get_condition($id, $c_no, $t_no, $block){
     /*
     수강신청 해당 분반 상태를 알려주는 함수 (ex. 정원 초과, 시간 중복, 과목 중복)
@@ -11,12 +12,12 @@ function get_condition($id, $c_no, $t_no, $block){
     $msg_array : 각 조건에 맞는 메시지를 담은 array
     */
 
-    $conn = mysqli_connect('localhost', 'root', '', 'test_schema2', '3306');
+    
     $msg_array = array();
 
     //이미 신청한 분반인지 체크
     $sql = "SELECT EXISTS (SELECT * FROM enroll WHERE s_id='{$id}' AND c_no={$c_no} AND t_no={$t_no});";
-    $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+    $result = custom_query($sql);
     $row = mysqli_fetch_row($result);
 
     if ($row[0] == 1) {
@@ -25,25 +26,26 @@ function get_condition($id, $c_no, $t_no, $block){
     } 
 
 
-
+    /*
     //과목 중복 체크
     $sql = "SELECT EXISTS (SELECT * FROM enroll WHERE s_id='{$id}' AND c_no={$c_no});";
-    $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+    $result = custom_query($sql);
     $row = mysqli_fetch_row($result);
 
     if ($row[0] == 1) {
         array_push($msg_array, "과목 중복");
     }
+    */
 
     //시간 중복 체크
     $sql = "SELECT t_time, t_max FROM teach WHERE c_no={$c_no} AND t_no={$t_no}";
-    $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+    $result = custom_query($sql);
     $row = mysqli_fetch_row($result);
     $t_time = $row[0];
     $t_max = $row[1];
 
     $sql = "SELECT brick1, brick2, brick3, brick4 FROM brick WHERE t_time='".$t_time."'";
-    $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+    $result = custom_query($sql);
     $row = mysqli_fetch_assoc($result);
 
     foreach($row as $brick) {
@@ -65,8 +67,6 @@ function get_condition($id, $c_no, $t_no, $block){
     if ($t_max <= 0){
         array_push($msg_array, "정원 초과");
     }
-
-    mysqli_close($conn);
 
     return $msg_array;
 }
@@ -100,5 +100,129 @@ function get_radio($msg_array, $t_no){
         return "";
     }
 
+}
+
+function get_all_case2($sub_array){
+    /*
+    과목 목록 보고 모든 수강 신청 경우의 수를 알려주는 함수
+    parameter
+    $sub_array : c_no가 담긴 배열
+    return
+    $all_block_list : 
+    */
+    
+    $all_block_list = array(array_fill(0, 7, array_fill(0, 5, null))); 
+    $brick_array = get_brick_array();
+    $conn = mysql_connect();
+
+    $sql = "SELECT c_no, t_time, c_name FROM teach;";
+    $teach_array = array();
+    $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+    while($row = mysqli_fetch_row($result)){  //0.2초 소요
+        if (!isset($teach_array[$row[0]])) {
+            $teach_array[$row[0]] = array();
+        }
+        array_push($teach_array[$row[0]], array($row[1], $row[2]));
+    }
+    
+    foreach($sub_array as $c_no) { //각 과목
+        $new_all_block_list = array();  // 해당 과목 집어넣은 후의 $new_block_list
+        
+        foreach($all_block_list as $block_list){ //각 경우의 수
+            $new_block_list = array(); //그 경우의 수에서 모든 분반의 $block_list를 가진 array         
+            foreach($teach_array[$c_no] as $row_array){  //분반
+                $t_time = $row_array[0];
+                $c_name = $row_array[1];
+                $row2 = $brick_array[$t_time];
+                
+                $new_block = $block_list; // 해당 분반 추가했을 때의 $block_list
+                $flag = true;
+                
+                foreach($row2 as $brick) {  //교시 
+                    
+                    if (!isset($brick)){
+                        break;
+                    }
+        
+                    $j = $brick % 10;
+                    $i = ($brick - $j) / 10;
+                    
+                    if (isset($block_list[$i][$j])){  //이미 해당 교시에 차있으면 $new_block_list에 안 넣음
+                        $flag = false;
+                        break; 
+                    }
+        
+                    $new_block[$i][$j] = $c_name;
+                }
+                if ($flag){
+                    
+                    array_push($new_block_list, $new_block); //0.5초 소요
+                    
+                }
+
+            }
+            
+            $new_all_block_list = array_merge($new_all_block_list, $new_block_list); //9초 소요
+            
+            
+        }
+        
+        $all_block_list = $new_all_block_list;
+        
+    }
+
+    return $all_block_list;
+}
+    
+
+
+function get_brick_array(){
+    $result = custom_query("SELECT t_time, brick1, brick2, brick3, brick4 FROM brick;");
+    $brick_array = array();
+    while ($row = mysqli_fetch_assoc($result)){
+        $brick_array[$row['t_time']] = array($row['brick1'],$row['brick2'],$row['brick3'],$row['brick4']);
+    }
+    return $brick_array;
+}
+
+function add_block($c_no, $block, $brick_array){
+    $conn = mysql_connect();
+    $sql = "SELECT t_time, c_name FROM teach WHERE c_no='".$c_no."';";
+    $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+
+    $new_block_list = array();
+    while ($row = mysqli_fetch_row($result)){  //분반
+        $t_time = $row[0];
+        $c_name = $row[1];
+        $sql2 = "SELECT brick1, brick2, brick3, brick4 FROM brick WHERE t_time='".$t_time."';";
+        $result2 = mysqli_query($conn, $sql2) or die(mysqli_error($conn));
+        $row2 = mysqli_fetch_row($result2);
+
+
+        $new_block = $block;
+        $flag = true;
+        foreach($row2 as $brick) {  //교시
+            if (!isset($brick)){
+                break;
+            }
+
+            $j = $brick % 10;
+            $i = ($brick - $j) / 10;
+            
+            if (isset($block[$i][$j])){  //이미 해당 교시에 차있으면 $new_block_list에 안 넣음
+                $flag = false;
+                break; 
+            }
+
+            $new_block[$i][$j] = $c_name;
+        
+        
+        }
+        if ($flag){
+            array_push($new_block_list, $new_block);
+        }
+    }
+    mysqli_close($conn);
+    return $new_block_list;
 }
 ?>
