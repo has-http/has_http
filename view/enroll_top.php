@@ -55,7 +55,8 @@
                 
                 <style>
                     <?php
-                        $conn = mysqli_connect( 'localhost', 'root', '', 'test_schema2', '3306');
+                        require_once("../lib/utill.php");
+                        $conn = mysql_connect();
                         $sql = "SELECT * FROM enroll WHERE s_id='".$_COOKIE['id']."'";
                         $temp = mysqli_query($conn, $sql);
                         while ($c_no = mysqli_fetch_array($temp)['c_no']) {

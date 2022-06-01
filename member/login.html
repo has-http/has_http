@@ -45,7 +45,7 @@
       }
       else{
         var s_id = responsePayload.email.split("@")[0]
-        document.cookie = "id=" + s_id;
+        document.cookie = "id=" + s_id +"; path=/" ;
         window.location.href = 'login_process.php';
       }
       }
