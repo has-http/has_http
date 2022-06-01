@@ -11,7 +11,7 @@ require('../view/enroll_top.php');
                 $block_dic = array('4A3' => '월12목67', '4B3' => '월34수56', '4C3' => '월5화7목34', '4D3' => '화12목5금7', '4E3' => '화56금12', '4F3' => '수12금34', '4G3' => '월67수34', '4H3' => '화34금56', '2A3' => '목12', '2B3' => '월67', '2C3' => '수34', '2D3' => '화34', '2E3' => '금56');
                 $temp = mysqli_query($conn, "SELECT * FROM course WHERE c_no = '".$_POST['sub_num']."'") or die(mysqli_error($conn));
                 $c_name = mysqli_fetch_array($temp)['c_name'];
-                echo "$c_name";
+                echo $c_name;
             ?>
             </th>
         </tr>
@@ -24,14 +24,19 @@ require('../view/enroll_top.php');
         </tr>
     </thead>
     <?php
+        require("../lib/enroll_func.php");
+        require_once("../lib/sub_list.php");
         $sql = "SELECT * FROM teach WHERE c_no = '".$_POST['sub_num']."'";
         $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-        
+        $block = get_block($_COOKIE['id']);
         while($row = mysqli_fetch_array($result)) {
             echo "<tr>";
-            $content = array($row['t_no'], $block_dic[$row['t_time']], $row['t_max'], ''
-            ,'<input type="radio" name="t_no" value='.$row['t_no'].'>');
+            $msg_array = get_condition($_COOKIE['id'],$_POST['sub_num'], $row['t_no'], $block);
+            $content = array($row['t_no'], $block_dic[$row['t_time']], $row['t_max'], 
+            join(' ', $msg_array),null);
 
+            $content[4] = get_radio($msg_array, $row['t_no']);
+                        
             foreach ($content as $i)
             {
             echo "<td> ".$i." </td>";
@@ -42,7 +47,8 @@ require('../view/enroll_top.php');
     </table>
     <input type="hidden" name="c_no" value=<?php echo "'".$_POST['sub_num']."'";?>>
     <input type="hidden" name="c_name" value=<?php echo "'".$c_name."'"; ?>>
-    <input id="submit_input" type="submit" value='수강 신청'>
+    <input id="submit_input" name="submit_input"  type="submit" value='수강 신청'>
+    <input id="submit_input" name="submit_input"  type="submit" value='신청 취소'>
 </form>
 
 </div>
