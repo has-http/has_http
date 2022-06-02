@@ -27,7 +27,7 @@
 
                     <?php
                         require_once("../lib/sub_list.php");
-                        writeSubjectTable($_COOKIE['id']);
+                        writeSubjectTable(get_block($_COOKIE['id']));
                     ?>
 
                     
@@ -35,10 +35,6 @@
             </table>
         </div>
     </div>
-    <script>
-        const main = document.querySelector('.main');
-        const sidebar = document.querySelector('.sidebar');
-        sidebar.style.height = `${main.clientHeight}px`;
-    </script>
+
 </body>
 </html>

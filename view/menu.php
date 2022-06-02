@@ -14,7 +14,7 @@
         <li><a href="../timetable/timetable.php">시간표</a>
             <ul class="nav2">
                 <li><a href="../timetable/timetable.php">시간표 및 강의계획</a></li>
-                <li><a href="#">시간표 조합 생성</a></li>
+                <li><a href="../timetable/make_timetable.php">시간표 조합 생성</a></li>
             </ul>
         </li>
         <li><a href="../qna/qna.php">QnA</a></li>

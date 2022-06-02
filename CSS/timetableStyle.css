@@ -12,3 +12,25 @@
 tr, td{
     text-align:center;
 }
+
+.combination_table th{
+    color: black;
+
+}
+
+.table_controller{
+    display:flex;
+    justify-content: center;
+}
+
+.text{
+    margin: 10px;
+    color: black;
+}
+.index_input{
+    width: 30px;
+    align-content: center;
+}
+.arrow{
+    cursor: pointer;
+}
