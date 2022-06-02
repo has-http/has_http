@@ -15,7 +15,8 @@ body{
 }
 
 .sidebar{
-    position: relative;
+    position: fixed;
+    top:75px;
     left:0;
     width: 220px;
     height:100vh;
@@ -52,7 +53,7 @@ body{
     position: absolute;
     top:75px;
     left:220px;
-    height: auto;
+    height:auto;
 }
 
 h1{
@@ -75,14 +76,15 @@ h1{
 .check_subj  table {
     border-collapse: collapse;
     height: auto;
-    width: 965px;
+    width: 900px;
     margin-left:60px;
     word-break:break-all;
-    margin-top:60px;
+    margin-top:30px;
+    text-align:center;
 }
 
 .check_subj td{
-    width: auto;
+    width: 150px;
 }
 
 .main .choose_subj > ul > li{
@@ -96,16 +98,13 @@ h1{
     cursor: pointer;
 }
 
-
-
-
 .choose_class table{
     border-collapse: collapse;
     height: auto;
-    width: 965px;
+    width: 900px;
     margin-left:60px;
     word-break:break-all;
-    margin-top:60px;
+    margin-top:30px;
 }
 
 .choose_class table td{
