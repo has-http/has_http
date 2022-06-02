@@ -35,10 +35,6 @@
             </table>
         </div>
     </div>
-    <script>
-        const main = document.querySelector('.main');
-        const sidebar = document.querySelector('.sidebar');
-        sidebar.style.height = `${main.clientHeight}px`;
-    </script>
+
 </body>
 </html>
