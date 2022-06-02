@@ -84,12 +84,17 @@ function set_visible(){
     else{
         next.style.visibility = 'visible';
     }
-    
+}
+
+function save_process(){
+    var form = document.createElement('form');
+    form.setAttribute('method', 'post');
+    form.setAttribute();
 }
 
 prev.addEventListener("click", back);
 next.addEventListener("click", foward);
-max_length_text.innerHTML = '/' +  block_length;
+max_length_text.innerHTML = '/ ' +  block_length;
 index_input.max = block_length;
 index_input.min = 1;
 set_html();
