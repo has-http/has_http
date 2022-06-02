@@ -34,3 +34,9 @@ tr, td{
 .arrow{
     cursor: pointer;
 }
+
+#save_form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

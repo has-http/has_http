@@ -49,7 +49,9 @@
             <input type="text" class="index_input" style="color: black; " value=1 oninput="process_input()"></input>
             <div id="max_length" class="text"></div>
             <button class="arrow next text">다음</button>
+            <button class="save text" onclick="save_process()">저장</button>
         </div>
+        
         <script src="../JS/writeSubjectTable.js"></script>
     </div>
 </body>
