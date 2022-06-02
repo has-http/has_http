@@ -61,7 +61,7 @@
                         $temp = mysqli_query($conn, $sql);
                         while ($c_no = mysqli_fetch_array($temp)['c_no']) {
                             echo ".choose_subj #a".$c_no."{";
-                            echo "background-color : blue;";
+                            echo "background-color : #666;";
                             echo "text-decoration: line-through;";
                             echo "}";
                         }
