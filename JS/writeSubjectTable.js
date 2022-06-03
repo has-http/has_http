@@ -84,12 +84,31 @@ function set_visible(){
     else{
         next.style.visibility = 'visible';
     }
-    
+}
+
+function save_process(){
+    if (index_input.value === '') {
+        alert('값을 입력해주세요');
+    }
+    else{
+        block_index = index_input.value - 1; //실제 index는 -1 
+
+        var form = document.createElement('form');
+        form.setAttribute('method', 'post');
+        form.setAttribute('action', 'save_process.php');
+        var hiddenField = document.createElement('input');
+        hiddenField.setAttribute('type', 'hidden');
+        hiddenField.setAttribute('name', 'index');
+        hiddenField.setAttribute('value', block_index);
+        form.appendChild(hiddenField)
+        document.body.appendChild(form);
+        form.submit();
+    }
 }
 
 prev.addEventListener("click", back);
 next.addEventListener("click", foward);
-max_length_text.innerHTML = '/' +  block_length;
+max_length_text.innerHTML = '/ ' +  block_length;
 index_input.max = block_length;
 index_input.min = 1;
 set_html();

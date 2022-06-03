@@ -102,11 +102,12 @@ function get_radio($msg_array, $t_no){
 
 }
 
-function get_all_case2($sub_array){
+function get_all_case($sub_array, $type){
     /*
     과목 목록 보고 모든 수강 신청 경우의 수를 알려주는 함수
     parameter
     $sub_array : c_no가 담긴 배열
+    $type : 'client'는 출력할 배열, 'server'은 서버측에서 다룰 배열
     return
     $all_block_list : 
     */
@@ -115,14 +116,14 @@ function get_all_case2($sub_array){
     $brick_array = get_brick_array();
     $conn = mysql_connect();
 
-    $sql = "SELECT c_no, t_time, c_name FROM teach;";
+    $sql = "SELECT c_no, t_time, c_name, t_no FROM teach;";
     $teach_array = array();
     $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-    while($row = mysqli_fetch_row($result)){  //0.2초 소요
+    while($row = mysqli_fetch_row($result)){  
         if (!isset($teach_array[$row[0]])) {
             $teach_array[$row[0]] = array();
         }
-        array_push($teach_array[$row[0]], array($row[1], $row[2]));
+        array_push($teach_array[$row[0]], array($row[1], $row[2], $row[3]));
     }
     
     foreach($sub_array as $c_no) { //각 과목
@@ -133,6 +134,7 @@ function get_all_case2($sub_array){
             foreach($teach_array[$c_no] as $row_array){  //분반
                 $t_time = $row_array[0];
                 $c_name = $row_array[1];
+                $t_no = $row_array[2];
                 $row2 = $brick_array[$t_time];
                 
                 $new_block = $block_list; // 해당 분반 추가했을 때의 $block_list
@@ -151,18 +153,23 @@ function get_all_case2($sub_array){
                         $flag = false;
                         break; 
                     }
-        
-                    $new_block[$i][$j] = $c_name;
+                    if ($type == 'client'){
+                        $new_block[$i][$j] = $c_name . " ({$t_no}분반)";
+                    }
+                    if ($type == 'server'){
+                        $new_block[$i][$j] = array($c_no, $t_no);
+                    }
+                    
                 }
                 if ($flag){
                     
-                    array_push($new_block_list, $new_block); //0.5초 소요
+                    array_push($new_block_list, $new_block); 
                     
                 }
 
             }
             
-            $new_all_block_list = array_merge($new_all_block_list, $new_block_list); //9초 소요
+            $new_all_block_list = array_merge($new_all_block_list, $new_block_list); 
             
             
         }
