@@ -102,11 +102,12 @@ function get_radio($msg_array, $t_no){
 
 }
 
-function get_all_case2($sub_array){
+function get_all_case($sub_array, $type){
     /*
     과목 목록 보고 모든 수강 신청 경우의 수를 알려주는 함수
     parameter
     $sub_array : c_no가 담긴 배열
+    $type : 'client'는 출력할 배열, 'server'은 서버측에서 다룰 배열
     return
     $all_block_list : 
     */
@@ -118,7 +119,7 @@ function get_all_case2($sub_array){
     $sql = "SELECT c_no, t_time, c_name, t_no FROM teach;";
     $teach_array = array();
     $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-    while($row = mysqli_fetch_row($result)){  //0.2초 소요
+    while($row = mysqli_fetch_row($result)){  
         if (!isset($teach_array[$row[0]])) {
             $teach_array[$row[0]] = array();
         }
@@ -152,8 +153,13 @@ function get_all_case2($sub_array){
                         $flag = false;
                         break; 
                     }
-        
-                    $new_block[$i][$j] = $c_name . " ({$t_no}분반)";
+                    if ($type == 'client'){
+                        $new_block[$i][$j] = $c_name . " ({$t_no}분반)";
+                    }
+                    if ($type == 'server'){
+                        $new_block[$i][$j] = array($c_no, $t_no);
+                    }
+                    
                 }
                 if ($flag){
                     

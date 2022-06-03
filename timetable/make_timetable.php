@@ -35,7 +35,7 @@
                 require_once('../lib/sub_list.php');
 
                 $sub_array = array(3001, 3004, 3007, 3019, 3021, 3026, 3027, 3023, 3036);
-                $list = get_all_case2($sub_array);
+                $list = get_all_case($sub_array, 'client');
                 ?>
                 
                 <script>
