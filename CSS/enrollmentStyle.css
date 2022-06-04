@@ -21,6 +21,7 @@ body{
     width: 220px;
     height:100vh;
     background-color: #298168;
+    z-index:999;
 }
 
 .sidebar > header{
@@ -136,10 +137,11 @@ h1{
     font-weight:bold;
     margin: 0 auto;
     position: relative;
-    left: 500px;
+    left: 450px;
     margin-top: 20px;
     cursor: pointer;
 }
+
 
 
 
@@ -147,13 +149,9 @@ table{
     border-collapse: collapse;
     margin-left:60px;
     width:120px;
-    margin-top:60px;
 }
 
 td{
     border: 1px solid #333;
     color:#000;
 }
-
-
-
