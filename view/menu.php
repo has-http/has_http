@@ -7,14 +7,14 @@
         <li><a href="../enrollment/enrollment.php">수강신청</a>
             <ul class="nav2">
                 <li><a href="../enrollment/enrollment.php">수강신청하기</a></li>
-                <li><a href="../enrollment/enroll_content.php">수강신청 내역</a></li>
-                <li><a href="../enrollment/enroll_check.php">과목 확인</a></li>
+                <li><a href="../enrollment/enroll_subjinfo.php">과목 선택</a></li>
+                <li><a href="../enrollment/enroll_pre.php">pre-수강신청</a></li>
             </ul>
         </li>
         <li><a href="../timetable/timetable.php">시간표</a>
             <ul class="nav2">
                 <li><a href="../timetable/timetable.php">시간표 및 강의계획</a></li>
-                <li><a href="../timetable/make_timetable.php">시간표 조합 생성</a></li>
+                <li><a href="#">시간표 조합 생성</a></li>
             </ul>
         </li>
         <li><a href="../qna/qna.php">QnA</a></li>
