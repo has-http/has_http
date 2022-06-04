@@ -5,7 +5,7 @@
                         <th colspan="6"> 현재 시간표 </th>
                     </tr>
                     <tr align="center" bgcolor="#30977a">
-                        <td style="padding-left: 20px">  </td>
+                        <td>  </td>
                         <th>월</th> 
                         <th>화</th>
                         <th>수</th>
