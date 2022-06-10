@@ -30,6 +30,12 @@
                             <th>단위수</th>
                             <th>선택</th>
                         </tr>
+                        <?php
+                            $classification_arrayL = array('국어', '영어', '제2외국어', '수학', '교양', '체육');
+                            require_once('../lib/sub_list.php');
+                            writeSubinfoTable($classification_arrayL);
+                        ?>
+                        <!--
                         <tr><td rowspan="3" style="font-weight:bold;">국어</td><td colspan="4">심화 국어</td><td>4</td><td><input type="checkbox"></td></tr>
                         <tr><td colspan="4">고전읽기</td><td>4</td><td><input type="checkbox"></td></tr>
                         <tr><td colspan="4">현대문학감상</td><td>2</td><td><input type="checkbox"></td></tr>
@@ -48,10 +54,12 @@
                         <tr><td colspan="4">AP 미적분학</td><td>4</td><td><input type="checkbox"></td></tr>
                         <tr><td style="font-weight:bold;">교양</td><td colspan="4">심리학</td><td>2</td><td><input type="checkbox"></td></tr>
                         <tr><td rowspan="2" style="font-weight:bold;">체육</td><td colspan="4">스포츠 생활(남)</td><td>2</td><td><input type="checkbox"></td></tr>
-                        <tr><td colspan="4">스포츠 생활(여)</td><td>2</td><td><input type="checkbox"></td></tr>                        
+                        <tr><td colspan="4">스포츠 생활(여)</td><td>2</td><td><input type="checkbox"></td></tr>
+                        -->                       
                     </thead>
                 </table>
             </div>
+
             <div class="choose_subjR">
                 <table border="2" bordercolor="#000">
                     <thead>
@@ -61,6 +69,11 @@
                             <th>단위수</th>
                             <th>선택</th>
                         </tr>
+                        <?php 
+                            $classification_arrayR = array('사회', '과학', '예술');
+                            writeSubinfoTable($classification_arrayR);
+                        ?>
+                        <!--
                         <tr><td rowspan="5" style="font-weight:bold;">사회</td><td colspan="4">생활과 윤리</td><td>4</td><td><input type="checkbox"></td></tr>
                         <tr><td colspan="4">사회문화</td><td>4</td><td><input type="checkbox"></td></tr>
                         <tr><td colspan="4">비교문화</td><td>4</td><td><input type="checkbox"></td></tr>
@@ -79,6 +92,7 @@
                         <tr><td colspan="4">미술사</td><td>2</td><td><input type="checkbox"></td></tr>
                         <tr><td colspan="4">음악 전공 실기</td><td>4</td><td><input type="checkbox"></td></tr>
                         <tr><td colspan="4">매체 미술</td><td>4</td><td><input type="checkbox"></td></tr>
+                        -->
                     </thead>
                 </table>
             </div>

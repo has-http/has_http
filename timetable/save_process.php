@@ -8,6 +8,7 @@ if (!isset($_COOKIE['id'])) {
     echo "<script>alert('로그인 해주세요');";
     echo "window.location.href = make_timetable.php;</script>";
 }
+
 $id = $_COOKIE['id'];
 $ct_array = array();
 for ($i=0; $i<7; $i++){
