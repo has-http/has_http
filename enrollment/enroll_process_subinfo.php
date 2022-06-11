@@ -7,7 +7,7 @@ if (isset($_POST["submit_input"])){
     $s_id = $_SESSION['user_id'];
     query_conn($conn, "DELETE FROM demand WHERE s_id = '{$s_id}';");
     query_conn($conn, "DELETE FROM enroll WHERE s_id = '{$s_id}';");
-    query_conn($conn, "DELETE FROM timetable_index WHERE s_id = '{$s_id};");
+    query_conn($conn, "DELETE FROM timetable_index WHERE s_id = '{$s_id}';");
     $sub_array = $_POST["subj"];
     foreach($sub_array as $c_no){
         $c_no = mysqli_real_escape_string($conn, $c_no);

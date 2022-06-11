@@ -132,6 +132,10 @@ h1{
     width: 40px;
 }
 
+.choose_class .subj{
+    width: 150px;
+}
+
 .choose_class #submit_input {
     background-color: #30977a;
     font-weight:bold;

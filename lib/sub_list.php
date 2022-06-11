@@ -109,5 +109,18 @@ function writeSubinfoTable($classification_array){  //subinfo.php에 들어갈 �
     }
     mysqli_close($conn);
 }
+
+function get_blockDicionary() { // 4A3 => 월12 금12같은 것 알려주는 array 반환
+    require_once('utill.php');
+    $block_dic = array();
+
+    $result = custom_query("SELECT t_time, brick_name FROM brick");
+    while ($row = mysqli_fetch_row($result)){
+        $t_time = $row[0];
+        $brick_name = $row[1];
+        $block_dic[$t_time] = $brick_name;
+    }
+    return $block_dic;
+}
                         
 ?>
