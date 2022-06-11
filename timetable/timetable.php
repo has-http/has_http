@@ -1,3 +1,6 @@
+<?php 
+require_once('../lib/member_func.php'); verify_id(); 
+?>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -31,7 +34,7 @@
             </tr>
             <?php
                 require("../lib/sub_list.php");
-                writeSubjectTable(get_block($_COOKIE['id']));
+                writeSubjectTable(get_block($_SESSION['user_id']));
             ?>
             </table>
         </div>

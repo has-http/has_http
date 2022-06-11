@@ -1,6 +1,16 @@
-<?php 
+<?php
+require_once('../lib/utill.php');
+$conn = mysql_connect(); 
+if (isset($_POST['sub_num'])){
+    $_POST['sub_num'] = mysqli_real_escape_string($conn, $_POST['sub_num']);
+}
+else{
+    header("Location: enrollment.php");
+    exit;
+}
 require('../view/enroll_top.php');
 ?>
+
 <div class = "choose_class">
 <form id="form_id" action="enrollment_process.php" method="post">
     <table border="2" width="100%" height="230" bordercolor="#000">
@@ -28,10 +38,10 @@ require('../view/enroll_top.php');
         require_once("../lib/sub_list.php");
         $sql = "SELECT * FROM teach WHERE c_no = '".$_POST['sub_num']."'";
         $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-        $block = get_block($_COOKIE['id']);
+        $block = get_block($_SESSION['user_id']);
         while($row = mysqli_fetch_array($result)) {
             echo "<tr>";
-            $msg_array = get_condition($_COOKIE['id'],$_POST['sub_num'], $row['t_no'], $block);
+            $msg_array = get_condition($_SESSION['user_id'],$_POST['sub_num'], $row['t_no'], $block);
             $content = array($row['t_no'], $block_dic[$row['t_time']], $row['t_max'], 
             join(' ', $msg_array),null);
 

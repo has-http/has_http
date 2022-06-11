@@ -1,3 +1,6 @@
+<?php 
+require_once('../lib/member_func.php'); verify_id(); 
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,7 +63,7 @@
                 <style>
                     <?php
                         
-                        $sql = "SELECT * FROM enroll WHERE s_id='".$_COOKIE['id']."'";
+                        $sql = "SELECT * FROM enroll WHERE s_id='".$_SESSION['user_id']."'";
                         $temp = mysqli_query($conn, $sql);
                         while ($c_no = mysqli_fetch_array($temp)['c_no']) {
                             echo ".choose_subj #a".$c_no."{";

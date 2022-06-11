@@ -51,6 +51,21 @@
             <button class="arrow next text">다음</button>
             <button class="save text" onclick="save_process()">저장</button>
         </div>
+
+        <script> var block_index = <?php
+            require_once('../lib/utill.php');
+            $id = $_SESSION['user_id'];
+            $result = custom_query("SELECT table_index FROM timetable_index WHERE s_id = '{$id}';");
+            $row = mysqli_fetch_row($result);
+            if (isset($row)){
+                echo $row[0];
+            }
+            else{
+                echo 0;
+            }
+        ?>;
+        </script>
+        
         
         <script src="../JS/writeSubjectTable.js"></script>
     </div>
