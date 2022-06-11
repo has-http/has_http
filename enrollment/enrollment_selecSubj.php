@@ -18,7 +18,6 @@ require('../view/enroll_top.php');
         <tr align="center" bgcolor="#298168">
             <th colspan="5"> 
             <?php
-                $block_dic = array('4A3' => '월12목67', '4B3' => '월34수56', '4C3' => '월5화7목34', '4D3' => '화12목5금7', '4E3' => '화56금12', '4F3' => '수12금34', '4G3' => '월67수34', '4H3' => '화34금56', '2A3' => '목12', '2B3' => '월67', '2C3' => '수34', '2D3' => '화34', '2E3' => '금56');
                 $temp = mysqli_query($conn, "SELECT * FROM course WHERE c_no = '".$_POST['sub_num']."'") or die(mysqli_error($conn));
                 $c_name = mysqli_fetch_array($temp)['c_name'];
                 echo $c_name;
@@ -36,12 +35,22 @@ require('../view/enroll_top.php');
     <?php
         require("../lib/enroll_func.php");
         require_once("../lib/sub_list.php");
+        $block_dic = get_blockDicionary();
+
         $sql = "SELECT * FROM teach WHERE c_no = '".$_POST['sub_num']."'";
         $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
         $block = get_block($_SESSION['user_id']);
         while($row = mysqli_fetch_array($result)) {
             echo "<tr>";
             $msg_array = get_condition($_SESSION['user_id'],$_POST['sub_num'], $row['t_no'], $block);
+
+            
+            $msg_index = array_search('과목 중복', $msg_array); // 장바구니 아닐땐 과목 중복 필요 없음
+            if ($msg_index !== false){
+                array_splice($msg_array, $msg_index, 1);
+            }
+            
+
             $content = array($row['t_no'], $block_dic[$row['t_time']], $row['t_max'], 
             join(' ', $msg_array),null);
 
