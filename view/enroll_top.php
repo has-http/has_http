@@ -43,20 +43,23 @@
                     }
                 </script>
 
-                <li id=a3001 onclick="f_click(3001)">심화국어</li>
-                <li id=a3004 onclick="f_click(3004)">수학세미나</li>
-                <li id=a3007 onclick="f_click(3007)">통합수학I</li>
-                <li id=a3019 onclick="f_click(3019)">프로그래밍</li>
-                <li id=a3021 onclick="f_click(3021)">고전역학</li>
-                <li id=a3026 onclick="f_click(3026)">에너지환경과학</li>
-                <li id=a3027 onclick="f_click(3027)">스포츠 생활</li>
-                <li id=a3023 onclick="f_click(3023)">응용화학탐구</li>
-                <li id=a3036 onclick="f_click(3036)">심리학</li>
-                
+                <?php
+                    require_once('../lib/member_func.php');
+                    require_once("../lib/utill.php");
+                    $c_no_array = get_demand_cno();
+                    $conn = mysql_connect();
+
+                    foreach($c_no_array as $c_no){
+                        $result = query_conn($conn, "SELECT c_name FROM course WHERE c_no='{$c_no}'");
+                        $c_name = mysqli_fetch_row($result)[0];
+                        echo "<li id=a{$c_no} onclick='f_click({$c_no})'>{$c_name}</li>";
+                    }
+                    
+                ?>
+
                 <style>
                     <?php
-                        require_once("../lib/utill.php");
-                        $conn = mysql_connect();
+                        
                         $sql = "SELECT * FROM enroll WHERE s_id='".$_COOKIE['id']."'";
                         $temp = mysqli_query($conn, $sql);
                         while ($c_no = mysqli_fetch_array($temp)['c_no']) {

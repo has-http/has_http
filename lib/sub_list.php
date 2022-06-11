@@ -67,6 +67,47 @@ function writeSubjectTable($block) {  // block 리스트 기반 table 작성
     }
 }
 
+function writeSubinfoTable($classification_array){  //subinfo.php에 들어갈 표 작성
+    require_once('../lib/utill.php');
+    require_once('../lib/member_func.php');
+    $demand_cno = get_demand_cno();
+    $conn = mysql_connect();
 
+    foreach ($classification_array as $class){
+        $result = query_conn($conn, "SELECT count(c_no) FROM course WHERE c_classification = '{$class}';");
+        $count = mysqli_fetch_row($result)[0];
+        echo "<tr><td rowspan='{$count}' style='font-weight:bold;'>{$class}</td>";
+
+        $result = query_conn($conn, "SELECT c_no, c_name, c_count FROM course WHERE c_classification = '{$class}';");
+        $row = mysqli_fetch_row($result);
+        
+        if (isset($row)){
+            $c_no = $row[0];
+            $c_name = $row[1];
+            $c_count = $row[2];
+            
+            echo "<td colspan='4'>{$c_name}</td> <td>{$c_count}</td> <td>
+                <input type='checkbox' name='subj[]' value={$c_no}";
+            if (in_array($c_no, $demand_cno)){
+                echo " checked";
+            }
+            echo "></td>"; // 첫 행은 <tr> 빠짐
+            while($row = mysqli_fetch_row($result)){  
+                $c_no = $row[0];
+                $c_name = $row[1];
+                $c_count = $row[2];
+                
+                echo "<tr><td colspan='4'>{$c_name}</td> <td>{$c_count}</td> <td>
+                    <input type='checkbox' name='subj[]' value={$c_no}";
+                if (in_array($c_no, $demand_cno)){
+                    echo " checked";
+                }
+                echo "></td></tr>";
+            }
+        }
+       
+    }
+    mysqli_close($conn);
+}
                         
 ?>

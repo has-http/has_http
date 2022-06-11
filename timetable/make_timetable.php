@@ -33,8 +33,8 @@
                 <?php
                 require_once('../lib/enroll_func.php');
                 require_once('../lib/sub_list.php');
-
-                $sub_array = array(3001, 3004, 3007, 3019, 3021, 3026, 3027, 3023, 3036);
+                require_once('../lib/member_func.php');
+                $sub_array = get_demand_cno();
                 $list = get_all_case($sub_array, 'client');
                 ?>
                 
