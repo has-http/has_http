@@ -63,6 +63,12 @@ h1{
     color:#000;
 }
 
+h2{
+    font-size: 15px;
+    margin: -20px auto 20px 60px;
+    color:#666;
+}
+
 .choose_subj{
     display:block;
 }
