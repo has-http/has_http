@@ -18,9 +18,12 @@
         </ul>
     </div>
     <div class="main">
-        <table style="width:1000px;table-layout:fixed;word-break:break-all;" class="combination_table">
+        <h1>시간표 조합 생성</h1>
+        <h2>본인이 선택한 과목을 바탕으로 가능한 시간표 조합을 모두 확인할 수 있습니다. 
+            <br> "저장" 버튼을 누르면 '수강신청' > '수강신청하기' 페이지에서 "장바구니" 기능을 사용할 수 있습니다.</h2>
+        <table border="2" bordercolor="#000" style="width:1000px;table-layout:fixed;word-break:break-all;background-color:" class="combination_table">
             <thead>
-            <tr align="center" bgcolor="white">
+            <tr align="center" bgcolor="#298168">
                 <th>교시</th>
                 <th>월요일</th>
                 <th>화요일</th>
@@ -45,11 +48,11 @@
         </table>
 
         <div class="table_controller">
-            <button class="arrow prev text">이전</button>
-            <input type="text" class="index_input" style="color: black; " value=1 oninput="process_input()"></input>
+            <button class="arrow prev text" style="color:#fff;">이전</button>
+            <input type="text" class="index_input" style="color: black; height:25px;margin-top:7px; " value=1 oninput="process_input()"></input>
             <div id="max_length" class="text"></div>
-            <button class="arrow next text">다음</button>
-            <button class="save text" onclick="save_process()">저장</button>
+            <button class="arrow next text" style="color:#fff;">다음</button>
+            <button class="save text" style="color:#fff;" onclick="save_process()">저장</button>
         </div>
 
         <script> var block_index = <?php
