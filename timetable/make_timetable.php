@@ -35,7 +35,8 @@
                 require_once('../lib/sub_list.php');
                 require_once('../lib/member_func.php');
                 $sub_array = get_demand_cno();
-                $list = get_all_case($sub_array, 'client');
+                $fixed_array = get_demand_tno();
+                $list = get_all_case($sub_array, 'client', $fixed_array);
                 ?>
                 
                 <script>

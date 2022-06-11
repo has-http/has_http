@@ -1,4 +1,3 @@
-
 <div class = "shopping_bag choose_class">
 <form id="form_id" action="enrollment_process.php" method="post">
     <table border="2" width="100%" height="230" bordercolor="#000">

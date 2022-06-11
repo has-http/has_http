@@ -31,14 +31,17 @@ if (isset($_SESSION['user_id'])){
 
         $sql = "Delete From enroll WHERE s_id ='{$s_id}' AND c_no={$c_no}";
         mysqli_query($conn, $sql) or die(mysqli_error($conn));
-        $sql = "INSERT INTO enroll values ('".$s_id."', '".$c_no . "', '" . $c_name . "', '" . $t_no . "')";
+        $sql = "INSERT INTO enroll (s_id, c_no, c_name, t_no) values ('".$s_id."', '".$c_no . "', '" . $c_name . "', '" . $t_no . "')";
         mysqli_query($conn, $sql) or die(mysqli_error($conn));
+        db_index_sort('enroll', 'e_index');
         mysqli_close($conn);
         echo "<script>alert('성공적으로 신청되었습니다.');window.location = './enrollment.php';</script>";
         }
+
     else if ($_POST['submit_input'] = "신청 취소"){
             $sql = "Delete From enroll WHERE s_id ='{$s_id}' AND c_no={$c_no}";
             mysqli_query($conn, $sql) or die(mysqli_error($conn));
+            db_index_sort('enroll', 'e_index');
             mysqli_close($conn);
             echo "<script>alert('성공적으로 취소되었습니다.');window.location = './enrollment.php';</script>";
     }

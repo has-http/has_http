@@ -12,6 +12,20 @@ function get_demand_cno(){ // 수요조사에 응답한 c_no 반환
     return $demand_array;
 }
 
+function get_demand_tno(){ // 수요조사에 응답한 array[c_no] = t_no 반환
+    require_once('utill.php');
+    verify_id();
+    $s_id = $_SESSION['user_id'];
+    $result = custom_query("SELECT c_no, t_no FROM demand WHERE s_id='{$s_id}'");
+    $demand_array = array();
+    while ($row = mysqli_fetch_row($result)){
+        $demand_array[$row[0]] = $row[1];
+    }
+
+    return $demand_array;
+}
+
+
 function verify_id(){
     if(!isset($_SESSION)) 
     { 
@@ -26,4 +40,6 @@ function verify_id(){
         return True;
     }
 }
+
+
 ?>

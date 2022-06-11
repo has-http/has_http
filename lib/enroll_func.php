@@ -134,12 +134,14 @@ function get_radio_shopping($msg_array, $t_no, $c_no, $c_name){
 
 }
 
-function get_all_case($sub_array, $type){
+function get_all_case($sub_array, $type, $fixed_array=array()){
     /*
     과목 목록 보고 모든 수강 신청 경우의 수를 알려주는 함수
     parameter
     $sub_array : c_no가 담긴 배열
     $type : 'client'는 출력할 배열, 'server'은 서버측에서 다룰 배열
+    $user_array : demand한 배열 $user_array[c_no] = t_no, 저장된 인덱스 알아오기 위해 만든 배열
+    $fixed_array : 고정된 과목 받아오는 함수 $fixed_array[c_no] = t_no
     return
     $all_block_list : 
     */
@@ -167,6 +169,10 @@ function get_all_case($sub_array, $type){
                 $t_time = $row_array[0];
                 $c_name = $row_array[1];
                 $t_no = $row_array[2];
+                if (isset($fixed_array[$c_no]) and $fixed_array[$c_no] != $t_no){
+                    continue;
+                }
+
                 $row2 = $brick_array[$t_time];
                 
                 $new_block = $block_list; // 해당 분반 추가했을 때의 $block_list
@@ -200,16 +206,10 @@ function get_all_case($sub_array, $type){
                 }
 
             }
-            
             $new_all_block_list = array_merge($new_all_block_list, $new_block_list); 
-            
-            
         }
-        
         $all_block_list = $new_all_block_list;
-        
     }
-
     return $all_block_list;
 }
     
@@ -264,4 +264,19 @@ function add_block($c_no, $block, $brick_array){
     mysqli_close($conn);
     return $new_block_list;
 }
+
+function get_class_count($c_no, $t_no){
+    /*
+    분반에 '수요조사'한 사람이 몇명인지 return
+    prameter
+    $c_no, $t_no => 그 분반의 과목, 분반 번호
+    */
+    require_once('utill.php');
+    custom_query("SELECT count(s_id)");
+}
+
+function get_table_index($tno_array){
+    require_once()
+}
+
 ?>
