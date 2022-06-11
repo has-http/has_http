@@ -1,4 +1,3 @@
-var block_index = 0;
 const prev = document.querySelector('.prev');
 const next = document.querySelector('.next');
 const tbody = document.querySelector('tbody');

@@ -1,3 +1,6 @@
+<?php 
+require_once('../lib/member_func.php'); verify_id(); 
+?>
 <!DOCTYPE html>
 <html lang="ko">
 <head>

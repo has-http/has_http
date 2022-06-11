@@ -1,3 +1,9 @@
+<?php
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+}
+?>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -45,8 +51,17 @@
       }
       else{
         var s_id = responsePayload.email.split("@")[0]
-        document.cookie = "id=" + s_id +"; path=/" ;
-        window.location.href = 'login_process.php';
+
+        var form = document.createElement('form');
+        form.setAttribute('method', 'post');
+        form.setAttribute('action', 'login_process.php');
+        var hiddenField = document.createElement('input');
+        hiddenField.setAttribute('type', 'hidden');
+        hiddenField.setAttribute('name', 'user_id');
+        hiddenField.setAttribute('value', s_id);
+        form.appendChild(hiddenField)
+        document.body.appendChild(form);
+        form.submit();
       }
       }
     </script>
