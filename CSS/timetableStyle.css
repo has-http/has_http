@@ -13,8 +13,12 @@ tr, td{
     text-align:center;
 }
 
+td{
+    background-color:rgb(241, 241, 224);;
+}
+
 .combination_table th{
-    color: black;
+    color: #fff;
 
 }
 
@@ -25,7 +29,7 @@ tr, td{
 
 .text{
     margin: 10px;
-    color: black;
+    color: #000;
 }
 .index_input{
     width: 30px;
@@ -39,4 +43,9 @@ tr, td{
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+button{
+    background-color:#298168;
+    font-weight:bold;
 }
