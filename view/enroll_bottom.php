@@ -28,6 +28,7 @@
                     <?php
                         require_once("../lib/sub_list.php");
                         writeSubjectTable(get_block($_COOKIE['id']));
+                        
                     ?>
 
                     
