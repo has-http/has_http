@@ -24,12 +24,14 @@ require_once('../lib/member_func.php'); verify_id();
         <ul>
             <li><a href="enrollment.php">수강신청하기</a></li>
             <li><a href="enroll_subjInfo.php">과목 선택</a></li>
-            <li><a href="enroll_pre.php">pre-수강신청</a></li>
+            <li><a href="demand.php">pre-수강신청</a></li>
         </ul>
     </div>
     <div class="main">
         <div class="choose_subj">
             <h1>과목 및 분반 선택</h1>
+            <h2>이 페이지는 실제 수강신청 페이지가 아닌 모의 수강신청 페이지로서, 미리 수강신청을 연습해볼 수 있습니다.
+                <br>이곳에서 본인의 수강과목 중 희망하는 분반에 대해 현재 해당 분반을 희망하는 인원을 확인할 수 있습니다.</h2>
             <ul>
 
             <script>
