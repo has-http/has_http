@@ -34,7 +34,7 @@ require_once('../lib/member_func.php'); verify_id();
             </tr>
             <?php
                 require("../lib/sub_list.php");
-                writeSubjectTable(get_block($_SESSION['user_id']));
+                writeSubjectTable(get_block(get_enroll_list($_SESSION['user_id'])));
             ?>
             </table>
         </div>

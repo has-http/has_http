@@ -38,8 +38,8 @@
                 require_once('../lib/sub_list.php');
                 require_once('../lib/member_func.php');
                 $sub_array = get_demand_cno();
-                $fixed_array = array();
-                $result = get_all_case_client($sub_array);
+                $fixed_array = get_demand_list($_SESSION['user_id']);
+                $result = get_all_case_client($sub_array, $fixed_array);
                 $list = $result[0];
                 $tno_list = $result[1];
                 ?>

@@ -5,18 +5,18 @@ if (isset($_POST['sub_num'])){
     $_POST['sub_num'] = mysqli_real_escape_string($conn, $_POST['sub_num']);
 }
 else{
-    header("Location: enrollment.php");
+    header("Location: demand.php");
     exit;
 }
-require('../view/enroll_top.php');
+require('../view/demand_top.php');
 ?>
 
 <div class = "choose_class">
-<form id="form_id" action="enrollment_process.php" method="post">
+<form id="form_id" action="demand_process.php" method="post">
     <table border="2" width="100%" height="230" bordercolor="#000">
     <thead>
         <tr align="center" bgcolor="#298168">
-            <th colspan="5"> 
+            <th colspan="6"> 
             <?php
                 $temp = mysqli_query($conn, "SELECT * FROM course WHERE c_no = '".$_POST['sub_num']."'") or die(mysqli_error($conn));
                 $c_name = mysqli_fetch_array($temp)['c_name'];
@@ -27,7 +27,8 @@ require('../view/enroll_top.php');
         <tr align="center" bgcolor="#30977a">
             <th class="class_num">분반</th> 
             <th class="time">시간</th>
-            <th class="last_num">남은 인원</th>
+            <th class="last_num">최대 인원</th>
+            <th class="last_num">현재 인원</th>
             <th class="condition">상태</th>
             <th class="summit">신청</th>
         </tr>
@@ -39,11 +40,10 @@ require('../view/enroll_top.php');
 
         $sql = "SELECT * FROM teach WHERE c_no = '".$_POST['sub_num']."'";
         $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-        $block = get_block(get_enroll_list($_SESSION['user_id']));
+        $block = get_block(get_demand_list($_SESSION['user_id']));
         while($row = mysqli_fetch_array($result)) {
             echo "<tr>";
-            $msg_array = get_condition($_SESSION['user_id'],$_POST['sub_num'], $row['t_no'], $block);
-
+            $msg_array = get_condition($_SESSION['user_id'],$_POST['sub_num'], $row['t_no'], $block, 'demand');
             
             $msg_index = array_search('과목 중복', $msg_array); // 장바구니 아닐땐 과목 중복 필요 없음
             if ($msg_index !== false){
@@ -51,10 +51,10 @@ require('../view/enroll_top.php');
             }
             
 
-            $content = array($row['t_no'], $block_dic[$row['b_code']], ($row['t_max'] - $row['t_now']), 
+            $content = array($row['t_no'], $block_dic[$row['b_code']], $row['t_max'], $row['t_dem'], 
             join(' ', $msg_array),null);
 
-            $content[4] = get_radio($msg_array, $row['t_no']);
+            $content[5] = get_radio($msg_array, $row['t_no']);
                         
             foreach ($content as $i)
             {
@@ -73,5 +73,5 @@ require('../view/enroll_top.php');
 </div>
 
 <?php 
-    require('../view/enroll_bottom.php');
+    require('../view/demand_bottom.php');
 ?>

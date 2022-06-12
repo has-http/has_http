@@ -29,9 +29,9 @@
             if (!isset($t_no)){ //과목은 수요조사 O, 분반 수요조사 x
                 continue;
             }
-
+            
             $sql2 = "SELECT t_max, c_name, b_code, t_now FROM teach WHERE c_no='{$c_no}' AND t_no='{$t_no}'";
-
+            
             $result2 = mysqli_query($conn, $sql2) or die(mysqli_error($conn));
             $row2 = mysqli_fetch_row($result2);
             $t_max = $row2[0];

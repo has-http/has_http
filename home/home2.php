@@ -94,23 +94,10 @@ require_once('../lib/member_func.php');verify_id();
                 </thhead>
     
                 <tbody>
-                    <!--<script>
-                        
-                        for (var i = 1; i<=7; i++){
-                            document.write('<tr align="center" bgcolor="white">');
-                            document.write('<td>' + i + "교시</td>");
-                            for (var j=1; j<=5; j++){
-                                document.write('<td>프로그래밍</td>');
-                            }
-                            document.write("</tr>");
-                        }
-                        
-                    </script>
-                    -->
 
                     <?php
                         require("../lib/sub_list.php");
-                        writeSubjectTable(get_block($_SESSION['user_id']));
+                        writeSubjectTable(get_block(get_enroll_list($_SESSION['user_id'])));
                     ?>
                 </tbody>
             </table>

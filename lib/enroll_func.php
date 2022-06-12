@@ -1,6 +1,6 @@
 <?php
 require_once('utill.php');
-function get_condition($id, $c_no, $t_no, $block){
+function get_condition($id, $c_no, $t_no, $block, $db='enroll'){
     /*
     수강신청 해당 분반 상태를 알려주는 함수 (ex. 정원 초과, 시간 중복, 과목 중복)
     parameter
@@ -8,15 +8,15 @@ function get_condition($id, $c_no, $t_no, $block){
     $c_no : 신청할 과목의 id
     $t_no : 신청할 분반 id
     $block : get_block()의 결과 (효율성 위해 내부에서 실행 안 하고 파라미터로 받음)
+    $db : enroll에서 쓸 때와 demand에서 쓸 때 다름 각각 enroll과 demand로 받아옴
     return 
     $msg_array : 각 조건에 맞는 메시지를 담은 array
     */
 
-    
     $msg_array = array();
 
     //이미 신청한 분반인지 체크
-    $sql = "SELECT EXISTS (SELECT * FROM enroll WHERE s_id='{$id}' AND c_no={$c_no} AND t_no={$t_no});";
+    $sql = "SELECT EXISTS (SELECT * FROM {$db} WHERE s_id='{$id}' AND c_no={$c_no} AND t_no={$t_no});";
     $result = custom_query($sql);
     $row = mysqli_fetch_row($result);
 
@@ -28,7 +28,7 @@ function get_condition($id, $c_no, $t_no, $block){
 
     
     //과목 중복 체크
-    $sql = "SELECT EXISTS (SELECT * FROM enroll WHERE s_id='{$id}' AND c_no={$c_no});";
+    $sql = "SELECT EXISTS (SELECT * FROM {$db} WHERE s_id='{$id}' AND c_no={$c_no});";
     $result = custom_query($sql);
     $row = mysqli_fetch_row($result);
 
@@ -63,9 +63,9 @@ function get_condition($id, $c_no, $t_no, $block){
         }
     }
     
-    //정원 초과 체크
+    //정원 초과 체크 
     
-    if ($t_max <= $t_now){
+    if ($db == 'enroll' and $t_max <= $t_now){ //db가 enroll 아닐땐 굳이 필요 없음
         array_push($msg_array, "정원 초과");
     }
 
@@ -78,6 +78,7 @@ function get_radio($msg_array, $t_no){
     parameter
     $msg_array : get_condition()의 반환값
     $t_no : 해당 과목의 분반
+    $db : enroll OR demand
     return
     $msg_html : 라디오 버튼 생성하는 html 코드 반환
     */

@@ -14,18 +14,35 @@ function get_enroll_list($id){
     return $enroll_list;
 }
 
-function get_block($id) {
+function get_demand_list($id){
+    /*
+    return : array[c_no] = t_no
+    */
+    $sql = "SELECT c_no, t_no FROM demand WHERE s_id='".$id."';";
+    $result = custom_query($sql);
+    $enroll_list = array();
+    while($row = mysqli_fetch_assoc($result)) {
+        $enroll_list[$row['c_no']] = $row['t_no'];
+    }
+
+    return $enroll_list;
+}
+
+
+function get_block($base_list) {
 
     /*
     block[i][j] => (j+1)요일 (i+1)교시의 과목 이름이 들어간 이중리스트 작성
     parameter : $subj_applied : 신청한 c_no가 key, t_no가 value인 연관배열
     */
-
-    $enroll_list = get_enroll_list($id);
+    
     $conn = mysql_connect();
     $block = array_fill(0, 7, array_fill(0, 5, null));
 
-    foreach ($enroll_list as $c_no => $t_no){
+    foreach ($base_list as $c_no => $t_no){
+        if (!isset($t_no)){
+            continue;
+        }
         $sql = "SELECT c_name, b_code FROM teach WHERE c_no='".$c_no."' AND t_no='".$t_no."'";
         
         $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
