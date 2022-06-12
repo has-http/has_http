@@ -24,6 +24,9 @@
         </div>
         <div class="successPro">
             <h1> 성공 확률 </h1>
+            <?php
+                
+            ?>
         </div>
     </div>
 </body>

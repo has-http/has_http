@@ -34,7 +34,7 @@ require('../view/demand_top.php');
         </tr>
     </thead>
     <?php
-        require("../lib/enroll_func.php");
+        require_once("../lib/enroll_func.php");
         require_once("../lib/sub_list.php");
         $block_dic = get_blockDicionary();
 

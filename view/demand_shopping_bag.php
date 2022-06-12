@@ -17,7 +17,7 @@
         </tr>
     </thead>
     <?php
-        require("../lib/enroll_func.php");
+        require_once("../lib/enroll_func.php");
         require_once("../lib/sub_list.php");
         $block_dic = get_blockDicionary();
         $sql = "SELECT c_no, t_no FROM demand WHERE s_id='{$id}'";

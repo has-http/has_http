@@ -28,9 +28,25 @@ require_once('../lib/utill.php');
 $conn = mysql_connect();
 
 foreach($ct_array as $c_no => $t_no){
+    $sql = "SELECT t_no FROM demand WHERE demand.c_no = {$c_no} AND demand.s_id = '{$id}'";
+    $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+    $privious_tno = mysqli_fetch_row($result)[0];
+
+    if (isset($privious_tno)){
+        $sql = "UPDATE teach SET t_dem = t_dem - 1
+            WHERE teach.c_no = {$c_no} AND teach.t_no = {$privious_tno};";
+        $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+    }
+
     $sql = "UPDATE demand SET t_no={$t_no} WHERE s_id='{$id}' AND c_no={$c_no}";
     $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+
+    $sql = "UPDATE teach SET t_dem = t_dem + 1
+        WHERE teach.c_no = {$c_no} AND teach.t_no = {$t_no};";
+    $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 }
+
+
 
 
 echo "<script>alert('성공적으로 저장하였습니다.');";
