@@ -157,14 +157,14 @@ function get_all_case_client($sub_array, $fixed_array=array()){
     $brick_array = get_brick_array();
     $conn = mysql_connect();
 
-    $sql = "SELECT c_no, b_code, c_name, t_no FROM teach;";
+    $sql = "SELECT c_no, b_code, t_no, c_name  FROM teach ORDER BY c_no;";
     $teach_array = array();
     $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
     while($row = mysqli_fetch_row($result)){  
         if (!isset($teach_array[$row[0]])) {
             $teach_array[$row[0]] = array();
         }
-        array_push($teach_array[$row[0]], array($row[1], $row[2], $row[3]));
+        array_push($teach_array[$row[0]], array($row[1], $row[3], $row[2]));
     }
     
     foreach($sub_array as $c_no) { //각 과목
@@ -234,14 +234,14 @@ function get_all_case_server($sub_array, $fixed_array=array()){
     $brick_array = get_brick_array();
     $conn = mysql_connect();
 
-    $sql = "SELECT c_no, b_code, c_name, t_no FROM teach;";
+    $sql = "SELECT c_no, b_code, t_no FROM teach ORDER BY c_no;";
     $teach_array = array();
     $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
     while($row = mysqli_fetch_row($result)){  
         if (!isset($teach_array[$row[0]])) {
             $teach_array[$row[0]] = array();
         }
-        array_push($teach_array[$row[0]], array($row[1], $row[2], $row[3]));
+        array_push($teach_array[$row[0]], array($row[1], $row[2]));
     }
     
     foreach($sub_array as $c_no) { //각 과목
@@ -251,8 +251,7 @@ function get_all_case_server($sub_array, $fixed_array=array()){
             $new_block_list = array(); //그 경우의 수에서 모든 분반의 $block_list를 가진 array         
             foreach($teach_array[$c_no] as $row_array){  //분반
                 $b_code = $row_array[0];
-                $c_name = $row_array[1];
-                $t_no = $row_array[2];
+                $t_no = $row_array[1];
                 if (isset($fixed_array[$c_no]) and $fixed_array[$c_no] != $t_no){
                     continue;
                 }
