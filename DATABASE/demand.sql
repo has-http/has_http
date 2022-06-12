@@ -14,8 +14,8 @@ ALTER TABLE enroll
     ADD CONSTRAINT fk_student_pk FOREIGN KEY (s_id)
         REFERENCES student (s_id);
 ALTER TABLE enroll
-    ADD CONSTRAINT fk_teach_pk FOREIGN KEY (c_no, t_no)
-        REFERENCES teach (c_no, t_no);
+    ADD CONSTRAINT fk_teach_pk FOREIGN KEY (c_no)
+        REFERENCES teach (c_no);
 
 --
 -- 2. DUMPING DATA
