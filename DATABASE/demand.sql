@@ -14,8 +14,8 @@ CREATE TABLE demand (
 ALTER TABLE demand
     ADD CONSTRAINT fk_demand_student_pk FOREIGN KEY (s_id)
         REFERENCES student (s_id);
-ALTER TABLE enroll
-    ADD CONSTRAINT fk_teach_pk FOREIGN KEY (c_no)
+ALTER TABLE demand
+    ADD CONSTRAINT fk_demand_teach_pk FOREIGN KEY (c_no)
         REFERENCES teach (c_no);
 
 --
