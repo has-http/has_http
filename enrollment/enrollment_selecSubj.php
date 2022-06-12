@@ -51,7 +51,7 @@ require('../view/enroll_top.php');
             }
             
 
-            $content = array($row['t_no'], $block_dic[$row['t_time']], $row['t_max'], 
+            $content = array($row['t_no'], $block_dic[$row['b_code']], $row['t_max'], 
             join(' ', $msg_array),null);
 
             $content[4] = get_radio($msg_array, $row['t_no']);

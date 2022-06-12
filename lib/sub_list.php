@@ -26,16 +26,16 @@ function get_block($id) {
     $block = array_fill(0, 7, array_fill(0, 5, null));
 
     foreach ($enroll_list as $c_no => $t_no){
-        $sql = "SELECT c_name, t_time FROM teach WHERE c_no='".$c_no."' AND t_no='".$t_no."'";
+        $sql = "SELECT c_name, b_code FROM teach WHERE c_no='".$c_no."' AND t_no='".$t_no."'";
         
         $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
         
         $row = mysqli_fetch_assoc($result);
 
         $c_name = $row['c_name'];
-        $t_time = $row['t_time'];
+        $b_code = $row['b_code'];
 
-        $sql = "SELECT brick1, brick2, brick3, brick4 FROM brick WHERE t_time='".$t_time."'";
+        $sql = "SELECT b_1, b_2, b_3, b_4 FROM brick WHERE b_code='".$b_code."'";
         $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
         $row = mysqli_fetch_assoc($result);
 
@@ -74,11 +74,11 @@ function writeSubinfoTable($classification_array){  //subinfo.php에 들어갈 �
     $conn = mysql_connect();
 
     foreach ($classification_array as $class){
-        $result = query_conn($conn, "SELECT count(c_no) FROM course WHERE c_classification = '{$class}';");
+        $result = query_conn($conn, "SELECT count(c_no) FROM course WHERE c_classify = '{$class}';");
         $count = mysqli_fetch_row($result)[0];
         echo "<tr><td rowspan='{$count}' style='font-weight:bold;'>{$class}</td>";
 
-        $result = query_conn($conn, "SELECT c_no, c_name, c_count FROM course WHERE c_classification = '{$class}';");
+        $result = query_conn($conn, "SELECT c_no, c_name, c_count FROM course WHERE c_classify = '{$class}';");
         $row = mysqli_fetch_row($result);
         
         if (isset($row)){
@@ -114,13 +114,15 @@ function get_blockDicionary() { // 4A3 => 월12 금12같은 것 알려주는 arr
     require_once('utill.php');
     $block_dic = array();
 
-    $result = custom_query("SELECT t_time, brick_name FROM brick");
+    $result = custom_query("SELECT b_code, b_time FROM brick");
     while ($row = mysqli_fetch_row($result)){
-        $t_time = $row[0];
-        $brick_name = $row[1];
-        $block_dic[$t_time] = $brick_name;
+        $b_code = $row[0];
+        $b_time = $row[1];
+        $block_dic[$b_code] = $b_time;
     }
     return $block_dic;
 }
+
+
                         
 ?>

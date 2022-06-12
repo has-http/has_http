@@ -11,22 +11,24 @@ CREATE TABLE brick (
     b_2         INTEGER     NOT NULL,
     b_3         INTEGER             ,
     b_4         INTEGER             ,
-    CONSTRAINT brick_pk PRIMARY KEY (b_code)
+    CONSTRAINT PRIMARY KEY (b_code)
 );
 
 --
 -- 2. DUMPING DATA
 --
-INSERT INTO brick VALUES ('4A3', '월12목67', 1, 2, 30, 31);
-INSERT INTO brick VALUES ('4B3', '월34수56', 3, 4, 21, 22);
-INSERT INTO brick VALUES ('4C3', '월5화7목34', 5, 15, 27, 28);
-INSERT INTO brick VALUES ('4D3', '화12목7금7', 9, 10, 29, 39);
-INSERT INTO brick VALUES ('4E3', '화56금12', 13, 14, 33, 34);
-INSERT INTO brick VALUES ('4F3', '수12금34', 17, 18, 35, 36);
-INSERT INTO brick VALUES ('4G3', '월67수34', 6, 7, 19, 20);
-INSERT INTO brick VALUES ('4H3', '화34금56', 11, 12, 37, 38);
-INSERT INTO brick VALUES ('2A3', '목12', 25, 26, 0, 0);
-INSERT INTO brick VALUES ('2B3', '월67', 6, 7, 0, 0);
-INSERT INTO brick VALUES ('2C3', '수34', 19, 20, 0, 0);
-INSERT INTO brick VALUES ('2D3', '화34', 11, 12, 0, 0);
-INSERT INTO brick VALUES ('2E3', '금56', 37, 38, 0, 0);
+INSERT INTO brick VALUES ('2A3', '목12', 3, 13, null, null);
+INSERT INTO brick VALUES ('2B3', '월67', 50, 60, null, null);
+INSERT INTO brick VALUES ('2C3', '수34', 22, 32, null, null);
+INSERT INTO brick VALUES ('2D3', '화34', 21, 31, null, null);
+INSERT INTO brick VALUES ('2E3', '금56', 44, 54, null, null);
+INSERT INTO brick VALUES ('4A3', '월12목67', 0, 10, 53, 63);
+INSERT INTO brick VALUES ('4B3', '월34수56', 20, 30, 42, 52);
+INSERT INTO brick VALUES ('4C3', '월5화7목34', 40, 61, 23, 33);
+INSERT INTO brick VALUES ('4D3', '화12목5금7', 1, 11, 43, 64);
+INSERT INTO brick VALUES ('4E3', '화56금12', 41, 51, 4, 14);
+INSERT INTO brick VALUES ('4F3', '수12금34', 2, 12, 24, 34);
+INSERT INTO brick VALUES ('4G3', '월67수34', 50, 60, 22, 32);
+INSERT INTO brick VALUES ('4H3', '화34금56', 21, 31, 44, 54);
+
+

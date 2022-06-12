@@ -27,16 +27,16 @@
             $c_no = $row[0];
             $t_no = $row[1];
 
-            $sql2 = "SELECT t_max, c_name, t_time FROM teach WHERE c_no='{$c_no}' AND t_no='{$t_no}'";
+            $sql2 = "SELECT t_max, c_name, b_code FROM teach WHERE c_no='{$c_no}' AND t_no='{$t_no}'";
             $result2 = mysqli_query($conn, $sql2) or die(mysqli_error($conn));
             $row2 = mysqli_fetch_row($result2);
             $t_max = $row2[0];
             $c_name = $row2[1];
-            $t_time = $row2[2];
+            $b_code = $row2[2];
 
             echo "<tr>";
             $msg_array = get_condition($id, $c_no, $t_no, $block);
-            $content = array($c_name, $t_no, $block_dic[$t_time], $t_max, 
+            $content = array($c_name, $t_no, $block_dic[$b_code], $t_max, 
             join(' ', $msg_array),null);
 
             $content[5] = get_radio_shopping($msg_array, $t_no, $c_no, $c_name);
