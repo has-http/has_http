@@ -36,8 +36,8 @@ conn = pymysql.connect(host='localhost', user='root', password='', db='test_sche
 cur = conn.cursor()
 
 day_dict = {'월' : '0', '화': '1', '수': '2', '목': '3', '금': '4'}
-update_query = "UPDATE brick SET brick1 = %s, brick2 = %s, brick3 = %s, brick4 = %s WHERE brick_name = %s;"
-select_query = 'SELECT brick_name FROM brick;'
+update_query = "UPDATE brick SET b_1 = %s, b_2 = %s, b_3 = %s, b_4 = %s WHERE b_time = %s;"
+select_query = 'SELECT b_time FROM brick;'
 
 cur.execute(select_query)
 conn.commit()
@@ -46,7 +46,7 @@ block_name_list = [i[0] for i in cur.fetchall()]
 for block_name in block_name_list:
     block_list = get_block_list(block_name)
     block_list.append(block_name)
-    #print(update_query %(block_list[0], block_list[1],block_list[2],block_list[3],block_list[4]))
+    print(update_query %(block_list[0], block_list[1],block_list[2],block_list[3],block_list[4]))
     cur.execute(update_query, block_list)
     conn.commit()
     

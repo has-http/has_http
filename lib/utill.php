@@ -16,9 +16,5 @@ function query_conn($conn, $sql){ // conn을 매번 껐다 켰다 하지 않는 
     return $result;
 }
 
-function db_index_sort($db_name, $index_name){
-    $conn = mysql_connect();
-    $sql =  "SET @count=0; UPDATE {$db_name} SET {$index_name}=@count:=@count+1;";
-    mysqli_multi_query($conn, $sql);
-}
+
 ?>

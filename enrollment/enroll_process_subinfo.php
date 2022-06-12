@@ -7,7 +7,6 @@ if (isset($_POST["submit_input"])){
     $s_id = $_SESSION['user_id'];
     query_conn($conn, "DELETE FROM demand WHERE s_id = '{$s_id}';");
     query_conn($conn, "DELETE FROM enroll WHERE s_id = '{$s_id}';");
-    query_conn($conn, "DELETE FROM timetable_index WHERE s_id = '{$s_id}';");
     $sub_array = $_POST["subj"];
 
     foreach($sub_array as $c_no){
@@ -15,11 +14,6 @@ if (isset($_POST["submit_input"])){
         query_conn($conn, "INSERT INTO demand (s_id, c_no) VALUES ('{$s_id}', '{$c_no}')");
     }
 
-    // demand d_index 정렬
-    db_index_sort('demand', 'd_index');
-
-    //enroll e_index 정렬
-    db_index_sort('enroll', 'e_index');
 
     mysqli_close($conn);
 
