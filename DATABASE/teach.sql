@@ -83,7 +83,7 @@ INSERT INTO teach VALUES ('4B3', '3017', 'AP 세계사', 1, 0, 0, 30);
 INSERT INTO teach VALUES ('4B3', '3018', '고급 생명과학', 1, 0, 0, 30);
 INSERT INTO teach VALUES ('4A3', '3018', '고급 생명과학', 2, 0, 0, 30);
 
-INSERT INTO teach VALUES ('4A3', '3019', '프로그래밍', 1, 0, 0, 30);
+INSERT INTO teach VALUES ('2A3', '3019', '프로그래밍', 1, 0, 0, 30);
 
 INSERT INTO teach VALUES ('4E3', '3020', '유기화학', 1, 0, 0, 30);
 
