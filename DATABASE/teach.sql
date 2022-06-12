@@ -106,43 +106,52 @@ INSERT INTO teach VALUES ('4C3', '3025', '응용지구과학탐구', 2, 0, 30);
 INSERT INTO teach VALUES ('4D3', '3026', '에너지환경과학', 1, 0, 30);
 INSERT INTO teach VALUES ('4E3', '3026', '에너지환경과학', 2, 0, 30);
 
-INSERT INTO teach VALUES ('2B3', '3027', '스포츠 생활', 1, 0, 30);
-INSERT INTO teach VALUES ('2B3', '3027', '스포츠 생활', 2, 0, 30);
-INSERT INTO teach VALUES ('2C3', '3027', '스포츠 생활', 3, 0, 30);
-INSERT INTO teach VALUES ('2C3', '3027', '스포츠 생활', 4, 0, 30);
-INSERT INTO teach VALUES ('2A3', '3027', '스포츠 생활', 5, 0, 30);
-INSERT INTO teach VALUES ('2A3', '3027', '스포츠 생활', 6, 0, 30);
-INSERT INTO teach VALUES ('2E3', '3027', '스포츠 생활', 7, 0, 30);
-INSERT INTO teach VALUES ('2E3', '3027', '스포츠 생활', 8, 0, 30);
+INSERT INTO teach VALUES ('2B3', '3027', '스포츠 생활(남)', 1, 0, 30);
+INSERT INTO teach VALUES ('2B3', '3027', '스포츠 생활(남)', 2, 0, 30);
+INSERT INTO teach VALUES ('2C3', '3027', '스포츠 생활(남)', 3, 0, 30);
+INSERT INTO teach VALUES ('2C3', '3027', '스포츠 생활(남)', 4, 0, 30);
+INSERT INTO teach VALUES ('2A3', '3027', '스포츠 생활(남)', 5, 0, 30);
+INSERT INTO teach VALUES ('2A3', '3027', '스포츠 생활(남)', 6, 0, 30);
+INSERT INTO teach VALUES ('2E3', '3027', '스포츠 생활(남)', 7, 0, 30);
+INSERT INTO teach VALUES ('2E3', '3027', '스포츠 생활(남)', 8, 0, 30);
 
-INSERT INTO teach VALUES ('2D3', '3028', '음악사', 1, 0, 30);
-INSERT INTO teach VALUES ('2E3', '3028', '음악사', 2, 0, 30);
+INSERT INTO teach VALUES ('2B3', '3028', '스포츠 생활(여)', 1, 0, 30);
+INSERT INTO teach VALUES ('2B3', '3028', '스포츠 생활(여)', 2, 0, 30);
+INSERT INTO teach VALUES ('2C3', '3028', '스포츠 생활(여)', 3, 0, 30);
+INSERT INTO teach VALUES ('2C3', '3028', '스포츠 생활(여)', 4, 0, 30);
+INSERT INTO teach VALUES ('2A3', '3028', '스포츠 생활(여)', 5, 0, 30);
+INSERT INTO teach VALUES ('2A3', '3028', '스포츠 생활(여)', 6, 0, 30);
+INSERT INTO teach VALUES ('2E3', '3028', '스포츠 생활(여)', 7, 0, 30);
+INSERT INTO teach VALUES ('2E3', '3028', '스포츠 생활(여)', 8, 0, 30);
 
-INSERT INTO teach VALUES ('2D3', '3029', '미술사', 1, 0, 30);
-INSERT INTO teach VALUES ('2E3', '3029', '미술사', 2, 0, 30);
+INSERT INTO teach VALUES ('2D3', '3029', '음악사', 1, 0, 30);
+INSERT INTO teach VALUES ('2E3', '3029', '음악사', 2, 0, 30);
 
-INSERT INTO teach VALUES ('4A3', '3030', '음악 전공 실기', 1, 0, 30);
-INSERT INTO teach VALUES ('4B3', '3030', '음악 전공 실기', 2, 0, 30);
-INSERT INTO teach VALUES ('4D3', '3030', '음악 전공 실기', 3, 0, 30);
+INSERT INTO teach VALUES ('2D3', '3030', '미술사', 1, 0, 30);
+INSERT INTO teach VALUES ('2E3', '3030', '미술사', 2, 0, 30);
 
-INSERT INTO teach VALUES ('4A3', '3031', '매체 미술', 1, 0, 30);
-INSERT INTO teach VALUES ('4B3', '3031', '매체 미술', 2, 0, 30);
-INSERT INTO teach VALUES ('4H3', '3031', '매체 미술', 3, 0, 30);
+INSERT INTO teach VALUES ('4A3', '3031', '음악 전공 실기', 1, 0, 30);
+INSERT INTO teach VALUES ('4B3', '3031', '음악 전공 실기', 2, 0, 30);
+INSERT INTO teach VALUES ('4D3', '3031', '음악 전공 실기', 3, 0, 30);
 
-INSERT INTO teach VALUES ('2C3', '3032', '현대문학감상', 1, 0, 30);
-INSERT INTO teach VALUES ('2A3', '3032', '현대문학감상', 2, 0, 30);
+INSERT INTO teach VALUES ('4A3', '3032', '매체 미술', 1, 0, 30);
+INSERT INTO teach VALUES ('4B3', '3032', '매체 미술', 2, 0, 30);
+INSERT INTO teach VALUES ('4H3', '3032', '매체 미술', 3, 0, 30);
 
-INSERT INTO teach VALUES ('4A3', '3033', '중국어 독해와 작문 I', 1, 0, 30);
+INSERT INTO teach VALUES ('2C3', '3033', '현대문학감상', 1, 0, 30);
+INSERT INTO teach VALUES ('2A3', '3033', '현대문학감상', 2, 0, 30);
 
-INSERT INTO teach VALUES ('4E3', '3034', '일본 문화', 1, 0, 30);
-INSERT INTO teach VALUES ('4D3', '3034', '일본 문화', 2, 0, 30);
+INSERT INTO teach VALUES ('4A3', '3034', '중국어 독해와 작문 I', 1, 0, 30);
 
-INSERT INTO teach VALUES ('4C3', '3035', '중국 언어와 문화', 1, 0, 30);
+INSERT INTO teach VALUES ('4E3', '3035', '일본 문화', 1, 0, 30);
+INSERT INTO teach VALUES ('4D3', '3035', '일본 문화', 2, 0, 30);
 
-INSERT INTO teach VALUES ('2A3', '3036', '심리학', 1, 0, 30);
-INSERT INTO teach VALUES ('2D3', '3036', '심리학', 2, 0, 30);
-INSERT INTO teach VALUES ('2C3', '3036', '심리학', 3, 0, 30);
-INSERT INTO teach VALUES ('2A3', '3036', '심리학', 4, 0, 30);
-INSERT INTO teach VALUES ('2B3', '3036', '심리학', 5, 0, 30);
-INSERT INTO teach VALUES ('2D3', '3036', '심리학', 6, 0, 30);
-INSERT INTO teach VALUES ('2E3', '3036', '심리학', 7, 0, 30);
+INSERT INTO teach VALUES ('4C3', '3036', '중국 언어와 문화', 1, 0, 30);
+
+INSERT INTO teach VALUES ('2A3', '3037', '심리학', 1, 0, 30);
+INSERT INTO teach VALUES ('2D3', '3037', '심리학', 2, 0, 30);
+INSERT INTO teach VALUES ('2C3', '3037', '심리학', 3, 0, 30);
+INSERT INTO teach VALUES ('2A3', '3037', '심리학', 4, 0, 30);
+INSERT INTO teach VALUES ('2B3', '3037', '심리학', 5, 0, 30);
+INSERT INTO teach VALUES ('2D3', '3037', '심리학', 6, 0, 30);
+INSERT INTO teach VALUES ('2E3', '3037', '심리학', 7, 0, 30);
