@@ -1,5 +1,9 @@
 <?php
 require_once("../lib/utill.php");
+if (isset($_POST['password']) and $_POST['password'] != 'hbv6398!!'){
+    header("Location: login.php");
+    exit;
+}
 session_start();
 $conn = mysql_connect();
 

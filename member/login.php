@@ -17,8 +17,8 @@ if(!isset($_SESSION))
         <h2>Has TimeTable Project</h2>
     </div>
      <div class="login">
-         <form action="home2.html" >
-             <input type="text" name="id" class="text-field" placeholder="아이디(이메일 주소)">
+         <form action="login_process.php" method="POST">  <!-- 향후 수정 -->
+             <input type="text" name="user_id" class="text-field" placeholder="아이디(이메일 주소)">
              <input type="password" name="password" class="text-field" placeholder="비밀번호">
               <input type="submit" value="LOGIN" class="submit-btn" >
           </form>

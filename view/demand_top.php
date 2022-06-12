@@ -78,4 +78,6 @@ require_once('../lib/member_func.php'); verify_id();
                 </style>
 
             </ul>
+        
         </div>
+        
