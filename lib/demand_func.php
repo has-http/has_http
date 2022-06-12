@@ -1,12 +1,17 @@
 <?php
-function insert_subj($sub_array, $id){
+function get_demand_tno($sub_array, $id){
     require_once('utill.php');
-    $conn = mysql_connect();
-    foreach ($sub_array as $c_no){
-        $sql = "INSERT INTO demand (s_id, c_no) values ('{$id}', {$c_no})";
-        mysqli_query($conn, $sql) or die(mysqli_error($conn));
-    }
-    mysqli_close($conn);
+    $sql = "SELECT c_no, t_no FROM demand WHERE s_id = '{$id}' AND t_no is not null";
+    $result = custom_query($sql);
+    $demand_tno = array();
+    while ($row = mysqli_fetch_row($result)){
+        $c_no = $row[0];
+        $t_no = $row[1];
+        if (in_array($c_no, $sub_array)){
+            array_push($demand_tno, $t_no);
+        }
 
+    }
+    return $demand_tno;
 }
 ?>

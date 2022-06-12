@@ -27,7 +27,7 @@
 
                     <?php
                         require_once("../lib/sub_list.php");
-                        writeSubjectTable(get_block($_SESSION['user_id']));
+                        writeSubjectTable(get_block(get_enroll_list($_SESSION['user_id'])));
                         
                     ?>
 

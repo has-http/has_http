@@ -22,7 +22,7 @@
         $block_dic = get_blockDicionary();
         $sql = "SELECT c_no, t_no FROM demand WHERE s_id='{$id}'";
         $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-        $block = get_block($id);
+        $block = get_block(get_enroll_list($id));
         while($row = mysqli_fetch_array($result)) {
             $c_no = $row[0];
             $t_no = $row[1];

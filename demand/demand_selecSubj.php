@@ -40,11 +40,10 @@ require('../view/demand_top.php');
 
         $sql = "SELECT * FROM teach WHERE c_no = '".$_POST['sub_num']."'";
         $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-        $block = get_block($_SESSION['user_id']);
+        $block = get_block(get_demand_list($_SESSION['user_id']));
         while($row = mysqli_fetch_array($result)) {
             echo "<tr>";
-            $msg_array = get_condition($_SESSION['user_id'],$_POST['sub_num'], $row['t_no'], $block);
-
+            $msg_array = get_condition($_SESSION['user_id'],$_POST['sub_num'], $row['t_no'], $block, 'demand');
             
             $msg_index = array_search('과목 중복', $msg_array); // 장바구니 아닐땐 과목 중복 필요 없음
             if ($msg_index !== false){

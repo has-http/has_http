@@ -39,7 +39,7 @@ require('../view/enroll_top.php');
 
         $sql = "SELECT * FROM teach WHERE c_no = '".$_POST['sub_num']."'";
         $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-        $block = get_block($_SESSION['user_id']);
+        $block = get_block(get_enroll_list($_SESSION['user_id']));
         while($row = mysqli_fetch_array($result)) {
             echo "<tr>";
             $msg_array = get_condition($_SESSION['user_id'],$_POST['sub_num'], $row['t_no'], $block);

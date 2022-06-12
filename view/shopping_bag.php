@@ -22,7 +22,7 @@
         $block_dic = get_blockDicionary();
         $sql = "SELECT c_no, t_no FROM demand WHERE s_id='{$id}'";
         $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-        $block = get_block($id);
+        $block = get_block(get_enroll_list($id));
         while($row = mysqli_fetch_array($result)) {
             $c_no = $row[0];
             $t_no = $row[1];
@@ -31,8 +31,7 @@
             }
 
             $sql2 = "SELECT t_max, c_name, b_code, t_now FROM teach WHERE c_no='{$c_no}' AND t_no='{$t_no}'";
-            echo $sql2;
-            echo '<br>';
+
             $result2 = mysqli_query($conn, $sql2) or die(mysqli_error($conn));
             $row2 = mysqli_fetch_row($result2);
             $t_max = $row2[0];
