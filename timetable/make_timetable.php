@@ -67,5 +67,49 @@
         
         <script src="../JS/writeSubjectTable.js"></script>
     </div>
+    <div class="selecFixed">
+            <h2>다음 중 희망하는 특정 과목의 특정 분반을 선택하면, 해당 과목의 분반을 포함하는 시간표 조합을 볼 수 있습니다.</h2>
+            <ul>
+                <li>심화국어</li><li>수학세미나I</li><li>수학세미나I</li><li>수학세미나I</li><li>수학세미나I</li><li>수학세미나I</li><li>수학세미나I</li><li>수학세미나I</li><li>수학세미나I</li>
+            </ul>
+            <select name="심화국어" class="select">
+                <option disabled selected>심화국어</option>
+                <option>1분반</option><option>2분반</option><option>3분반</option>
+            </select>
+            <select name="수학세미나 I" class="select">
+                <option disabled selected>수학세미나I</option>
+                <option>1분반</option><option>2분반</option><option>3분반</option>
+            </select>
+            <select name="수학세미나 I" class="select">
+                <option disabled selected>수학세미나I</option>
+                <option>1분반</option><option>2분반</option><option>3분반</option>
+            </select>
+            <select name="수학세미나 I" class="select">
+                <option disabled selected>수학세미나I</option>
+                <option>1분반</option><option>2분반</option><option>3분반</option>
+            </select>
+            <select name="수학세미나 I" class="select">
+                <option disabled selected>수학세미나I</option>
+                <option>1분반</option><option>2분반</option><option>3분반</option>
+            </select>
+            <select name="수학세미나 I" class="select">
+                <option disabled selected>수학세미나I</option>
+                <option>1분반</option><option>2분반</option><option>3분반</option>
+            </select>
+            <select name="수학세미나 I" class="select">
+                <option disabled selected>수학세미나I</option>
+                <option>1분반</option><option>2분반</option><option>3분반</option>
+            </select>
+            <select name="수학세미나 I" class="select">
+                <option disabled selected>수학세미나I</option>
+                <option>1분반</option><option>2분반</option><option>3분반</option>
+            </select>
+            <select name="수학세미나 I" class="select">
+                <option disabled selected>수학세미나I</option>
+                <option>1분반</option><option>2분반</option><option>3분반</option>
+            </select>
+        </div>
+        <button class="submit" style="color:#fff;">확인</button>
+    </div>
 </body>
 </html>
