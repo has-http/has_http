@@ -3,7 +3,7 @@ require_once('../lib/enroll_func.php');
 require_once('../lib/member_func.php');
 verify_id();
 $sub_array = get_demand_cno();
-$list = get_all_case($sub_array, 'server');
+$list = get_all_case_server($sub_array);
 try{
 $index = $_POST['index'];
 $target = $list[$index];
@@ -32,8 +32,7 @@ foreach($ct_array as $c_no => $t_no){
     $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 }
 
-$sql = "INSERT INTO timetable_index (s_id, table_index) VALUES ('{$id}', {$index}) ON DUPLICATE KEY UPDATE table_index = {$index};";
-$result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+
 echo "<script>alert('성공적으로 저장하였습니다.');";
 
 

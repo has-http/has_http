@@ -3,15 +3,15 @@
 --
 -- 1. TABLE STRUCTURE
 --
-DROP TABLE IF EXISTS enroll;
-CREATE TABLE enroll (
+DROP TABLE IF EXISTS demand;
+CREATE TABLE demand (
     s_id        VARCHAR(30) NOT NULL,
     c_no        VARCHAR(30) NOT NULL,
-    t_no        INTEGER     NOT NULL,
-    CONSTRAINT enroll_pk PRIMARY KEY (s_id, c_no, t_no)
+    t_no        INTEGER,     
+    CONSTRAINT  PRIMARY KEY (s_id, c_no)
 );
-ALTER TABLE enroll
-    ADD CONSTRAINT fk_student_pk FOREIGN KEY (s_id)
+ALTER TABLE demand
+    ADD CONSTRAINT fk_demand_student_pk FOREIGN KEY (s_id)
         REFERENCES student (s_id);
 ALTER TABLE enroll
     ADD CONSTRAINT fk_teach_pk FOREIGN KEY (c_no)

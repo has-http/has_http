@@ -13,10 +13,10 @@ course_rows = []
 teach_rows = []
 
 for i, line in enumerate(rdr):
-    c_name, t_time_list, c_count = line
+    c_name, b_code_list, c_count = line
     c_no = str(3001 + i)
     course_rows.append((c_no, c_name, c_count))
-    for j, s in enumerate(t_time_list.split()):
+    for j, s in enumerate(b_code_list.split()):
         teach_rows.append((str(c_count) + s + '3', str(j+1), '30', c_no, c_name, c_count))
 
 

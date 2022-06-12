@@ -15,4 +15,6 @@ function query_conn($conn, $sql){ // conn을 매번 껐다 켰다 하지 않는 
     $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
     return $result;
 }
+
+
 ?>
