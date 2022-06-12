@@ -10,6 +10,7 @@ CREATE TABLE demand (
     t_no        INTEGER,     
     CONSTRAINT  PRIMARY KEY (s_id, c_no)
 );
+
 ALTER TABLE demand
     ADD CONSTRAINT fk_demand_student_pk FOREIGN KEY (s_id)
         REFERENCES student (s_id);

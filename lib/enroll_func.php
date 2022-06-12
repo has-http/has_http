@@ -38,11 +38,12 @@ function get_condition($id, $c_no, $t_no, $block){
     
 
     //시간 중복 체크
-    $sql = "SELECT b_code, t_max FROM teach WHERE c_no={$c_no} AND t_no={$t_no}";
+    $sql = "SELECT b_code, t_max, t_now FROM teach WHERE c_no={$c_no} AND t_no={$t_no}";
     $result = custom_query($sql);
     $row = mysqli_fetch_row($result);
     $b_code = $row[0];
     $t_max = $row[1];
+    $t_now = $row[2];
 
     $sql = "SELECT b_1, b_2, b_3, b_4 FROM brick WHERE b_code='".$b_code."'";
     $result = custom_query($sql);
@@ -64,7 +65,7 @@ function get_condition($id, $c_no, $t_no, $block){
     
     //정원 초과 체크
     
-    if ($t_max <= 0){
+    if ($t_max <= $t_now){
         array_push($msg_array, "정원 초과");
     }
 
@@ -115,7 +116,7 @@ function get_radio_shopping($msg_array, $t_no, $c_no, $c_name){
     //신청한 과목일때
     $index = array_search('신청한 분반', $msg_array);
     if ($index !== false){
-        return "<input type='radio' name='t_no/c_no/c_name' value='{$t_no}/{$c_no}/{$c_name}'>";
+        return "<input type='radio' name='t_no/c_no' value='{$t_no}/{$c_no}'>";
     }
 
     //시간 중복, 정원 초과, 과목 중복 아닐 때
@@ -124,7 +125,7 @@ function get_radio_shopping($msg_array, $t_no, $c_no, $c_name){
     $index3 = array_search('과목 중복', $msg_array);
 
     if ($index1 === false and $index2 === false and $index3 === false){
-        return "<input type='radio' name='t_no/c_no/c_name' value='{$t_no}/{$c_no}/{$c_name}'>";
+        return "<input type='radio' name='t_no/c_no' value='{$t_no}/{$c_no}'>";
     }
 
     //있을때
