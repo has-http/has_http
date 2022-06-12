@@ -36,7 +36,7 @@ function set_html(){
 }
 
 function process_input(){
-    index_input.value = index_input.value.replace(/[^0-9.]/g, '');
+    index_input.value = index_input.value.replace(/[^0-9]/g, '');
     if (index_input.value === '') {
         selected_block_list = null_list;
     }
