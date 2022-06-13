@@ -1,10 +1,10 @@
--- demand table (수요조사 테이블: 아이디, 과목코드, 분반)
+-- fix_subj table (고정시킨 테이블: 아이디, 과목코드, 분반)
 
 --
 -- 1. TABLE STRUCTURE
 --
-DROP TABLE IF EXISTS demand;
-CREATE TABLE demand (
+DROP TABLE IF EXISTS fix_subj;
+CREATE TABLE fix_subj (
     s_id    VARCHAR(30) NOT NULL,
     c_no    VARCHAR(30) NOT NULL,
     t_no    INTEGER             ,    
@@ -12,10 +12,10 @@ CREATE TABLE demand (
 );
 
 ALTER TABLE demand
-    ADD CONSTRAINT fk_demand_student_pk FOREIGN KEY (s_id)
+    ADD CONSTRAINT fk_fix_subj_student_pk FOREIGN KEY (s_id)
         REFERENCES student (s_id);
 ALTER TABLE demand
-    ADD CONSTRAINT fk_demand_teach_pk FOREIGN KEY (c_no)
+    ADD CONSTRAINT fk_fix_subj_teach_pk FOREIGN KEY (c_no)
         REFERENCES teach (c_no);
 
 --

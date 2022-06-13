@@ -86,3 +86,10 @@ select, option{
     margin-left:525px;
     margin-top:20px;
 }
+
+/*custom*/
+
+.fix_form > button{
+    margin-left:525px;
+    margin-top:20px;
+}
