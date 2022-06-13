@@ -141,12 +141,14 @@ function get_all_case_client($sub_array, $fixed_array=array()){
     과목 목록 보고 모든 수강 신청 경우의 수를 알려주는 함수 + indexing에 필요한 것 까지 return
     parameter
     $sub_array : c_no가 담긴 배열
-    $user_array : demand한 배열 $user_array[c_no] = t_no, 저장된 인덱스 알아오기 위해 만든 배열
     $fixed_array : 고정된 과목 받아오는 함수 $fixed_array[c_no] = t_no
     variables
     $all_block_list : return할 array, 7x5 array(시간표 조합)들이 담긴 array로 구성되있다.
     $new_all_block_list : 과목 하나하나 넣음에 따라 생길 all_block_list, all_block_list는 foreach에서 돌아야하니
                           과목 하나 끝난 후 업데이트
+
+    $all_tno_dict : 모든 경우의 수의 arr[c_no] = t_no 를 가진 array
+    
     구조
     sub_array에 담긴 과목 순서대로 하나씩 경우의 수 고려 => all_block_list에 있는 각 경우의 수에 대해 과목 고려
     => 해당 과목의 각 분반 고려 => 그 분반에 들어가는 시간 하나하나 고려
@@ -229,6 +231,7 @@ function get_all_case_server($sub_array, $fixed_array=array()){
     /*
     과목 목록 보고 모든 수강 신청 경우의 수를 알려주는 함수
     get_all_case_client랑 사실상 같지만 if로 계속 거르기엔 구동 시간이 오래 결려서 구분지음
+    각 경우에 array($c_no, $t_no)를 저장
     */
     
     $all_block_list = array(array_fill(0, 7, array_fill(0, 5, null))); 
