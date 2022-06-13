@@ -4,11 +4,10 @@ const tbody = document.querySelector('tbody');
 const index_input = document.querySelector('.index_input');
 const max_length_text = document.getElementById('max_length');
 //block_list는 이미 정의됨
+
 var selected_block_list = block_list[block_index];
 var null_list = Array.from({length: 7}, (v,i) => new Array(5));
 const block_length = block_list.length;
-
-
 
 function get_html(){
     var inner_html = '';

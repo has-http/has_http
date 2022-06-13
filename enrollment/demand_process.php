@@ -32,7 +32,7 @@ if (isset($_SESSION['user_id'])){
         mysqli_query($conn, $sql) or die(mysqli_error($conn));
 
         $sql = "UPDATE teach SET t_dem = 
-                    (SELECT count(s_id) FROM demand WHERE demand.c_no = {$c_no} AND demand.t_no = {$t_no} AND s_id = '{$s_id}') 
+                    (SELECT count(s_id) FROM demand WHERE demand.c_no = {$c_no} AND demand.t_no = {$t_no} ) 
                 WHERE teach.c_no = {$c_no} AND teach.t_no = {$t_no};";
         mysqli_query($conn, $sql) or die(mysqli_error($conn));
 
@@ -45,7 +45,7 @@ if (isset($_SESSION['user_id'])){
             mysqli_query($conn, $sql) or die(mysqli_error($conn));
 
             $sql = "UPDATE teach SET t_dem = 
-                    (SELECT count(s_id) FROM demand WHERE demand.c_no = {$c_no} AND demand.t_no = {$t_no} AND s_id = '{$s_id}') 
+                    (SELECT count(s_id) FROM demand WHERE demand.c_no = {$c_no} AND demand.t_no = {$t_no} ) 
                     WHERE teach.c_no = {$c_no} AND teach.t_no = {$t_no};";
             mysqli_query($conn, $sql) or die(mysqli_error($conn));
             mysqli_close($conn);

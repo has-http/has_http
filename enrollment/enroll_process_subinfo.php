@@ -6,6 +6,8 @@ if (isset($_POST["submit_input"])){
     $conn = mysql_connect();
     $s_id = $_SESSION['user_id'];
     query_conn($conn, "DELETE FROM demand WHERE s_id = '{$s_id}';");
+    
+
     query_conn($conn, "DELETE FROM enroll WHERE s_id = '{$s_id}';");
     $sub_array = $_POST["subj"];
 
@@ -14,6 +16,8 @@ if (isset($_POST["submit_input"])){
         query_conn($conn, "INSERT INTO demand (s_id, c_no) VALUES ('{$s_id}', '{$c_no}')");
     }
 
+    query_conn($conn, "UPDATE teach SET t_now = (SELECT count(s_id) FROM enroll WHERE enroll.c_no = teach.c_no AND enroll.t_no = teach.t_no);");
+    query_conn($conn, "UPDATE teach SET t_dem = (SELECT count(s_id) FROM demand WHERE demand.c_no = teach.c_no AND demand.t_no = teach.t_no);");
 
     mysqli_close($conn);
 

@@ -45,7 +45,7 @@ if(isset($_SESSION))
       function handleCredentialResponse(response) {
         var form = document.createElement('form');
         form.setAttribute('method', 'post');
-        form.setAttribute('action', 'login_process.php');
+        form.setAttribute('action', 'login_process copy.php');
         var hiddenField = document.createElement('input');
         hiddenField.setAttribute('type', 'hidden');
         hiddenField.setAttribute('name', 'id_token');
