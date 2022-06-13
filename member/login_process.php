@@ -3,6 +3,10 @@ require_once 'lib/vendor/autoload.php';
 
 // Get $id_token via HTTPS POST.
 $CLIENT_ID = "322197737705-ibo2f1h9of611g71k832uo8u7bt6mlmp.apps.googleusercontent.com";
+if (!isset($_POST['id_token'])){
+    echo "<script>alert('잘못된 접근입니다');";
+    echo "window.location = 'login.php';</script>";
+}
 $id_token = $_POST['id_token'];
 $client = new Google_Client(['client_id' => $CLIENT_ID]);  // Specify the CLIENT_ID of the app that accesses the backend
 $payload = $client->verifyIdToken($id_token);
@@ -29,11 +33,11 @@ if ($payload) {
   }
   else{
     echo "<script>alert('하나고 구글 계정을 사용해주세요');";
-    echo "window.location = 'login copy.php';</script>";
+    echo "window.location = 'login.php';</script>";
   }
 } else {
   echo "<script>alert('잘못된 접근입니다');";
-  echo "window.location = 'login copy.php';</script>";
+  echo "window.location = 'login.php';</script>";
 }
 exit;
 
