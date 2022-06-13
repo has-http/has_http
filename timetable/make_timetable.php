@@ -38,15 +38,20 @@
                     require_once('../lib/enroll_func.php');
                     require_once('../lib/sub_list.php');
                     require_once('../lib/member_func.php');
+                    require_once('../lib/demand_func.php');
                     $sub_array = get_demand_cno();
-                    $fixed_array = get_demand_list($_SESSION['user_id']);
-                    $result = get_all_case_client($sub_array);
+                    $fixed_array = get_fixed_tno();
+                    $result = get_all_case_client($sub_array, $fixed_array);
                     $list = $result[0];
                     $tno_list = $result[1];
+
+                    $all_probabillity_list = get_all_probability($tno_list);
+
                     ?>
                     
                     <script>
                         var block_list = <?php echo json_encode($list) ?>;
+                        var prob_list = <?php echo json_encode($all_probabillity_list) ?>;
                     </script>
                 </tbody>
             </table>
@@ -68,50 +73,37 @@
             
             <script src="../JS/writeSubjectTable.js"></script>
         </div>
-
-        <div class="selecFixed">
-            <h2>다음 중 희망하는 특정 과목의 특정 분반을 선택하면, 해당 과목의 분반을 포함하는 시간표 조합을 볼 수 있습니다.</h2>
-            <ul>
-                <li>심화국어</li><li>수학세미나I</li><li>수학세미나I</li><li>수학세미나I</li><li>수학세미나I</li><li>수학세미나I</li><li>수학세미나I</li><li>수학세미나I</li><li>수학세미나I</li>
-            </ul>
-            <select name="심화국어" class="select">
-                <option disabled selected>심화국어</option>
-                <option>1분반</option><option>2분반</option><option>3분반</option>
-            </select>
-            <select name="수학세미나 I" class="select">
-                <option disabled selected>수학세미나I</option>
-                <option>1분반</option><option>2분반</option><option>3분반</option>
-            </select>
-            <select name="수학세미나 I" class="select">
-                <option disabled selected>수학세미나I</option>
-                <option>1분반</option><option>2분반</option><option>3분반</option>
-            </select>
-            <select name="수학세미나 I" class="select">
-                <option disabled selected>수학세미나I</option>
-                <option>1분반</option><option>2분반</option><option>3분반</option>
-            </select>
-            <select name="수학세미나 I" class="select">
-                <option disabled selected>수학세미나I</option>
-                <option>1분반</option><option>2분반</option><option>3분반</option>
-            </select>
-            <select name="수학세미나 I" class="select">
-                <option disabled selected>수학세미나I</option>
-                <option>1분반</option><option>2분반</option><option>3분반</option>
-            </select>
-            <select name="수학세미나 I" class="select">
-                <option disabled selected>수학세미나I</option>
-                <option>1분반</option><option>2분반</option><option>3분반</option>
-            </select>
-            <select name="수학세미나 I" class="select">
-                <option disabled selected>수학세미나I</option>
-                <option>1분반</option><option>2분반</option><option>3분반</option>
-            </select>
-            <select name="수학세미나 I" class="select">
-                <option disabled selected>수학세미나I</option>
-                <option>1분반</option><option>2분반</option><option>3분반</option>
-            </select>
-        </div>
-        <button class="submit" style="color:#fff;">확인</button>
+        <form action="fix_process.php" method="POST" class="fix_form">
+            <div class="selecFixed">
+                <h2>다음 중 희망하는 특정 과목의 특정 분반을 선택하면, 해당 과목의 분반을 포함하는 시간표 조합을 볼 수 있습니다.</h2>
+                <ul>
+                    <?php
+                    $c_name_dict = get_demand_cname();
+                    foreach ($c_name_dict as $c_no => $c_name){
+                        ?> <li> <?php echo $c_name; ?> </li> <?php
+                    }
+                    ?>
+                </ul>
+                
+                <?php
+                foreach($c_name_dict as $c_no => $c_name){
+                    ?> <select name= <?php echo 'subj[]' ?> class="select">
+                            <?php $fix_arr = get_fix_selected($c_no); ?>
+                            <option value=0 <?php echo $fix_arr[0]; ?> >선택 안 함</option>
+                            <?php
+                            $result = custom_query("SELECT count(t_no) FROM teach WHERE c_no = {$c_no}");
+                            $count = mysqli_fetch_row($result)[0];
+                            for ($i=1; $i<=$count; $i++){
+                                ?>
+                                <option value= <?php echo $i.' '.$fix_arr[$i];?>> <?php echo $i; ?>분반</option>
+                                <?php
+                            }
+                        ?></select>
+                <?php }
+                ?>
+            </div>
+            <button class="submit" style="color:#fff;">확인</button>
+        </form>
     </div>
 </body>
 </html>
