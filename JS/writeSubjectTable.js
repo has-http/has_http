@@ -3,11 +3,19 @@ const next = document.querySelector('.next');
 const tbody = document.querySelector('tbody');
 const index_input = document.querySelector('.index_input');
 const max_length_text = document.getElementById('max_length');
-//block_list는 이미 정의됨
+const probability = document.getElementById('probability');
+const max_probability = document.querySelector('.max_probability')
+//block_list, prob_list는 이미 정의됨
 
 var selected_block_list = block_list[block_index];
 var null_list = Array.from({length: 7}, (v,i) => new Array(5));
 const block_length = block_list.length;
+
+if (block_length == 0){
+    selected_block_list = null_list;
+    block_index = -1;
+}
+
 
 function get_html(){
     var inner_html = '';
@@ -32,11 +40,12 @@ function null_check(x){
 function set_html(){
     tbody.innerHTML = get_html();
     index_input.value = block_index + 1; //보이는건 +1
+    probability.innerHTML = prob_list[block_index];
 }
 
 function process_input(){
     index_input.value = index_input.value.replace(/[^0-9]/g, '');
-    if (index_input.value === '') {
+    if (index_input.value === '' ||block_length == 0 ) {
         selected_block_list = null_list;
     }
     else{
@@ -54,19 +63,25 @@ function process_input(){
     set_visible();
 }
 
-function back(){
-    block_index--;
+function update(){
     selected_block_list = block_list[block_index];
     set_html();
     set_visible();
 }
 
+function back(){
+    block_index--;
+    update();
+}
+
 function foward(){
     block_index++;
-    selected_block_list = block_list[block_index];
-    set_html();
-    set_visible();
-    
+    update();
+}
+
+function set_max_prob(){
+    block_index = max_plob_index;
+    update();
 }
 
 function set_visible(){
@@ -106,6 +121,7 @@ function save_process(){
 
 prev.addEventListener("click", back);
 next.addEventListener("click", foward);
+max_probability.addEventListener("click", set_max_prob);
 max_length_text.innerHTML = '/ ' +  block_length;
 index_input.max = block_length;
 index_input.min = 1;

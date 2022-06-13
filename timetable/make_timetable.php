@@ -52,6 +52,8 @@
                     <script>
                         var block_list = <?php echo json_encode($list) ?>;
                         var prob_list = <?php echo json_encode($all_probabillity_list) ?>;
+                        var block_index = <?php echo get_table_index($tno_list); ?>;
+                        var max_plob_index =  <?php echo array_search(max($all_probabillity_list), $all_probabillity_list); ?> ;
                     </script>
                 </tbody>
             </table>
@@ -61,14 +63,11 @@
                 <input type="text" class="index_input" style="color: black; height:25px;margin-top:7px; " value=1 oninput="process_input()"></input>
                 <div id="max_length" class="text"></div>
                 <button class="arrow next text" style="color:#fff;">다음</button>
+                <button class="text max_probability" style="color:#fff;">최고 확률</button>
                 <button class="save text" style="color:#fff;" onclick="save_process()">저장</button>
             </div>
 
-            <script> var block_index = <?php
-                echo get_table_index($tno_list);
-                //echo 0;
-            ?>;
-            </script>
+            <div id="probability"> </div>
             
             
             <script src="../JS/writeSubjectTable.js"></script>
