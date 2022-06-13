@@ -40,7 +40,7 @@ function null_check(x){
 function set_html(){
     tbody.innerHTML = get_html();
     index_input.value = block_index + 1; //보이는건 +1
-    probability.innerHTML = prob_list[block_index];
+    probability.innerHTML = prob_list[block_index] * 100 + '%';
 }
 
 function process_input(){

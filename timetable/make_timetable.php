@@ -65,9 +65,10 @@
                 <button class="arrow next text" style="color:#fff;">다음</button>
                 <button class="text max_probability" style="color:#fff;">최고 확률</button>
                 <button class="save text" style="color:#fff;" onclick="save_process()">저장</button>
+                <div id="probability"> </div>
             </div>
 
-            <div id="probability"> </div>
+            
             
             
             <script src="../JS/writeSubjectTable.js"></script>
