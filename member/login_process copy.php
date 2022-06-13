@@ -4,6 +4,8 @@ require_once 'lib/vendor/autoload.php';
 // Get $id_token via HTTPS POST.
 $CLIENT_ID = "322197737705-ibo2f1h9of611g71k832uo8u7bt6mlmp.apps.googleusercontent.com";
 $id_token = $_POST['id_token'];
+echo $id_token;
+echo '<br>';
 $client = new Google_Client(['client_id' => $CLIENT_ID]);  // Specify the CLIENT_ID of the app that accesses the backend
 $payload = $client->verifyIdToken($id_token);
 if ($payload) {
