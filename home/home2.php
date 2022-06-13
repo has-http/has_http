@@ -50,19 +50,19 @@ require_once('../lib/member_func.php');verify_id();
     
                 <tbody>
                     <tr align="center" bgcolor="white">
-                        <td> 1 </td>
+                        <td>1</td>
+                        <td>[전교생] 2022 2학기 수강과목 확정조사 안내 </td>
+                        <td>2022.06.08</td>
+                    </tr>
+                    <tr align="center" bgcolor="white">
+                        <td>2</td>
                         <td> 2022학년도 2학기 1차 과목 수요조사 안내 (5/31까지) </td>
                         <td>2022.05.20</td>
                     </tr>
                     <tr align="center" bgcolor="white">
-                      <td>2</td>
+                      <td>3</td>
                       <td>[12기, 13기] 교육과정설명회 질의응답</td>
                       <td>2022.05.10</td>
-                    </tr>
-                    <tr align="center" bgcolor="white">
-                        <td>3</td>
-                        <td>프로그래밍 화이팅</td>
-                        <td>2022.04.14</td>
                     </tr>
                 </tbody>
     
