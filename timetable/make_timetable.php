@@ -77,15 +77,18 @@
         <form action="fix_process.php" method="POST" class="fix_form">
             <div class="selecFixed">
                 <h2>다음 중 희망하는 특정 과목의 특정 분반을 선택하면, 해당 과목의 분반을 포함하는 시간표 조합을 볼 수 있습니다.</h2>
-                <ul>
-                    <?php
-                    $c_name_dict = get_demand_cname();
-                    foreach ($c_name_dict as $c_no => $c_name){
-                        ?> <li> <?php echo $c_name; ?> </li> <?php
-                    }
-                    ?>
-                </ul>
-                
+                <div class="label">
+                    <ul>
+                        <?php
+                        $c_name_dict = get_demand_cname();
+                        foreach ($c_name_dict as $c_no => $c_name){
+                            ?> <li> <?php echo $c_name; ?> </li> <?php
+                        }
+                        ?>
+                    </ul>
+                </div>
+
+                <div class = "select_box">
                 <?php
                 foreach($c_name_dict as $c_no => $c_name){
                     ?> <select name= <?php echo 'subj[]' ?> class="select">
@@ -102,6 +105,7 @@
                         ?></select>
                 <?php }
                 ?>
+                </div>
             </div>
             <button class="submit" style="color:#fff;">확인</button>
         </form>
