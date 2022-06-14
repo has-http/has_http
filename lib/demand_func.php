@@ -1,6 +1,5 @@
 <?php
 
-use Google\Service\Monitoring\Custom;
 
 require_once('utill.php');
 function get_teach_dict(){ 
@@ -72,13 +71,12 @@ function get_probability_improved($teach_dict, $demand_arr){ //개선된 것
     return $proballity;
 }
 
-function get_count_arr(){
-    // count_arr[$c_no][$t_no] = count(s_id) by demand
-    verify_id();
-    $s_id = $_SESSION['user_id'];
-    $sql = "SELECT teach.c_no, teach.t_no, count(s_id)  FROM teach LEFT OUTER JOIN demand 
+function get_cno_count(){
+    // count_arr[$c_no]= count(s_id) by demand
+    // 수요 조사에 안 참여한 사람을 구하기 위해 만드는 array
+    $sql = "SELECT teach.c_no, count(s_id)  FROM teach LEFT OUTER JOIN demand 
             ON demand.c_no = teach.c_no AND demand.t_no = teach.t_no 
-            group by teach.c_no, teach.t_no";
+            group by teach.c_no";
     $result = custom_query($sql);
     $count_arr = array();
     
@@ -87,7 +85,7 @@ function get_count_arr(){
         if (!isset($count_arr[$c_no])){
             $count_arr[$c_no] = array();
         }
-        $count_arr[$c_no][$row[1]] = $row[2]; 
+        $count_arr[$c_no] = $row[1]; 
     }
 
     
@@ -102,16 +100,26 @@ function get_probability_improved_fast($teach_dict, $tno_list, $count_arr, $dema
         if (!isset($t_no)){
             return -1;
         }
+
         $temp = $teach_dict[$c_no][$t_no];
         $t_dem = $temp[0];
         $t_max = $temp[1];
 
-        $demand_count = $count_arr[$c_no][$t_no];
+        $demand_count = $count_arr[$c_no];
+
+        if (!isset($demand_arr[$c_no])){ //만약 해당 과목 분반 신청 x => 조합에 대한 신청인원 +1, 조합에 대한 t_no 신청인원 +1 
+            $demand_count += 1;
+            $t_dem += 1;
+        }
+
+        else if ($demand_arr[$c_no] != $t_no){ //만약 해당 과목 다른 분반 신청 => 조합에 대한 t_no 신청인원 +1 
+            $t_dem += 1;
+        }
 
 
         $x = $teach_dict[$c_no]['count'];
-        $temp2 = ($t_max * $x) - $demand_count;
-        $virtual_num = ($temp2 - ($temp2 % $x)) / $x;
+        $not_demand_count = ($t_max * $x) - $demand_count; //수요조사에 참여하지 않은 인원
+        $virtual_num = ($not_demand_count - ($not_demand_count % $x)) / $x;
         
         $t_dem += $virtual_num;
         
@@ -125,7 +133,7 @@ function get_probability_improved_fast($teach_dict, $tno_list, $count_arr, $dema
 function get_all_probability($all_tno_list){
     $teach_dict = get_teach_dict();
     $arr = array();
-    $count_arr = get_count_arr();
+    $count_arr = get_cno_count();
     $demand_arr = get_demand_tno();
 
     foreach($all_tno_list as $tno_list){
