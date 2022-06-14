@@ -1,5 +1,9 @@
 <?php 
 require_once('../lib/member_func.php'); verify_id(); 
+if (!check_sub()){
+    echo "<script>alert('과목 선택을 먼저 해주세요'); window.location.href = '../enrollment/enroll_subjinfo.php';</script>";
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html>

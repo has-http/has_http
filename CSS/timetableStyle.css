@@ -25,6 +25,8 @@ td{
 .table_controller{
     display:flex;
     justify-content: center;
+    align-items: baseline;
+
 }
 
 .text{
