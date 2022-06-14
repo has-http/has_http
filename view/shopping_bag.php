@@ -44,7 +44,7 @@
             $content = array($c_name, $t_no, $block_dic[$b_code], ($t_max - $t_now), 
             join(' ', $msg_array),null);
 
-            $content[5] = get_radio_shopping($msg_array, $t_no, $c_no, $c_name);
+            $content[5] = get_radio_shopping($msg_array, $t_no, $c_no);
                         
             foreach ($content as $i)
             {

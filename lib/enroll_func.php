@@ -104,7 +104,7 @@ function get_radio($msg_array, $t_no){
 
 }
 
-function get_radio_shopping($msg_array, $t_no, $c_no, $c_name){
+function get_radio_shopping($msg_array, $t_no, $c_no){
     /*
     수강 신청 시 라디오 버튼 설정 // 장바구니에서
     parameter

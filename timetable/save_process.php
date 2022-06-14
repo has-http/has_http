@@ -1,9 +1,11 @@
 <?php
 require_once('../lib/enroll_func.php');
 require_once('../lib/member_func.php');
+require_once('../lib/demand_func.php');
 verify_id();
 $sub_array = get_demand_cno();
-$list = get_all_case_server($sub_array);
+$fixed_array = get_fixed_tno();
+$list = get_all_case_server($sub_array, $fixed_array);
 try{
 $index = $_POST['index'];
 $target = $list[$index];
@@ -47,11 +49,10 @@ foreach($ct_array as $c_no => $t_no){
 }
 
 
-
-
 echo "<script>alert('성공적으로 저장하였습니다.');";
 
 
 echo "window.location = 'make_timetable.php';</script>";
+
 
 ?>

@@ -1,3 +1,5 @@
 member/lib/
 test.php
 .vscode/
+DATABASE/test.py
+.gitignore
