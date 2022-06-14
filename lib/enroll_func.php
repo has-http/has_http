@@ -72,13 +72,13 @@ function get_condition($id, $c_no, $t_no, $block, $db='enroll'){
     return $msg_array;
 }
 
-function get_radio($msg_array, $t_no){
+function get_radio($msg_array, $t_no, $c_no, $db='enroll'){
     /*
     수강 신청 시 라디오 버튼 설정
     parameter
     $msg_array : get_condition()의 반환값
     $t_no : 해당 과목의 분반
-    $db : enroll OR demand
+    $c_no : 해당 과목의 c_no
     return
     $msg_html : 라디오 버튼 생성하는 html 코드 반환
     */
@@ -89,18 +89,41 @@ function get_radio($msg_array, $t_no){
         return "<input type='radio' name='t_no' value='{$t_no}' checked>";
     }
 
-    //시간 중복과 정원 초과 아닐 때
-    $index1 = array_search('시간 중복', $msg_array);
-    $index2 = array_search('정원 초과', $msg_array);
+    //시간 중복과 정원 초과
+    
+    $index = array_search('정원 초과', $msg_array);
 
-    if ($index1 === false and $index2 === false){
-        return "<input type='radio' name='t_no' value='{$t_no}'>";
-    }
-
-    //있을때
-    else{
+    if ($index !== false){
         return "";
     }
+
+    $index = array_search('시간 중복', $msg_array);
+
+    if ($index !== false){
+        $b_code = mysqli_fetch_row(custom_query("SELECT b_code FROM teach WHERE c_no = {$c_no} AND t_no = {$t_no}"))[0];
+        $result = custom_query("SELECT count(c_no) FROM teach WHERE b_code = '{$b_code}' AND c_no = {$c_no}");
+        $count = mysqli_fetch_row($result)[0];
+        if ($count <= 1){ // 시간 중복이여도 같은 그게 있으면 다시 생각
+            return "";
+        }
+        else{ // 반드시 그 과목을 신청했어야
+            verify_id();
+            $s_id = $_SESSION['user_id'];
+            $result = custom_query("SELECT count(teach.t_no) FROM teach LEFT JOIN {$db} 
+            ON teach.c_no = {$db}.c_no AND teach.t_no = {$db}.t_no
+            WHERE teach.c_no = {$c_no} AND s_id = '{$s_id}' AND b_code = '{$b_code}'");
+            $count = mysqli_fetch_row($result)[0];
+            if ($count == 0){ // 신청 안 되있으면
+                return "";
+            }
+            // else : 해당 과목의 다른 분반을 신청했는데 다른 분반의 시간표와 radio를 띄울 분반의 시간표가 겹침
+        }
+    }
+    return "<input type='radio' name='t_no' value='{$t_no}'>";        
+
+
+    //있을때
+    
 
 }
 
@@ -120,12 +143,11 @@ function get_radio_shopping($msg_array, $t_no, $c_no){
         return "<input type='radio' name='t_no/c_no' value='{$t_no}/{$c_no}'>";
     }
 
-    //시간 중복, 정원 초과, 과목 중복 아닐 때
+    //시간 중복, 정원 초과 아닐 때
     $index1 = array_search('시간 중복', $msg_array);
     $index2 = array_search('정원 초과', $msg_array);
-    $index3 = array_search('과목 중복', $msg_array);
 
-    if ($index1 === false and $index2 === false and $index3 === false){
+    if ($index1 === false and $index2 === false){
         return "<input type='radio' name='t_no/c_no' value='{$t_no}/{$c_no}'>";
     }
 
