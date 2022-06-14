@@ -37,8 +37,8 @@ require('../view/demand_top.php');
         require_once("../lib/enroll_func.php");
         require_once("../lib/sub_list.php");
         $block_dic = get_blockDicionary();
-
-        $sql = "SELECT * FROM teach WHERE c_no = '".$_POST['sub_num']."'";
+        $c_no = mysqli_real_escape_string($conn, $_POST['sub_num']);
+        $sql = "SELECT * FROM teach WHERE c_no = '".$c_no."'";
         $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
         $block = get_block(get_demand_list($_SESSION['user_id']));
         while($row = mysqli_fetch_array($result)) {
@@ -54,7 +54,7 @@ require('../view/demand_top.php');
             $content = array($row['t_no'], $block_dic[$row['b_code']], $row['t_max'], $row['t_dem'], 
             join(' ', $msg_array),null);
 
-            $content[5] = get_radio($msg_array, $row['t_no']);
+            $content[5] = get_radio($msg_array, $row['t_no'], $c_no, 'demand');
                         
             foreach ($content as $i)
             {

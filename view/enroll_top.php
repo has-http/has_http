@@ -1,5 +1,9 @@
 <?php 
 require_once('../lib/member_func.php'); verify_id(); 
+if (!check_sub()){
+    echo "<script>alert('과목 선택을 먼저 해주세요'); window.location.href = '../enrollment/enroll_subjinfo.php';</script>";
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,7 +17,7 @@ require_once('../lib/member_func.php'); verify_id();
         let now_time = new Date();
         if (target.getTime() > now_time.getTime()) {
             alert("수강신청 기간이 아닙니다.");
-            window.location.href = './enroll_check.html';
+            window.location.href = './enroll_subinfo.php';
         }
     </script>
 </head>

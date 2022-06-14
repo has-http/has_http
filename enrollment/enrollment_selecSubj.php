@@ -36,13 +36,13 @@ require('../view/enroll_top.php');
         require_once("../lib/enroll_func.php");
         require_once("../lib/sub_list.php");
         $block_dic = get_blockDicionary();
-
-        $sql = "SELECT * FROM teach WHERE c_no = '".$_POST['sub_num']."'";
+        $c_no = mysqli_real_escape_string($conn, $_POST['sub_num']);
+        $sql = "SELECT * FROM teach WHERE c_no = '".$c_no."'";
         $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
         $block = get_block(get_enroll_list($_SESSION['user_id']));
         while($row = mysqli_fetch_array($result)) {
             echo "<tr>";
-            $msg_array = get_condition($_SESSION['user_id'],$_POST['sub_num'], $row['t_no'], $block);
+            $msg_array = get_condition($_SESSION['user_id'],$c_no, $row['t_no'], $block);
 
             
             $msg_index = array_search('과목 중복', $msg_array); // 장바구니 아닐땐 과목 중복 필요 없음
@@ -54,7 +54,7 @@ require('../view/enroll_top.php');
             $content = array($row['t_no'], $block_dic[$row['b_code']], ($row['t_max'] - $row['t_now']), 
             join(' ', $msg_array),null);
 
-            $content[4] = get_radio($msg_array, $row['t_no']);
+            $content[4] = get_radio($msg_array, $row['t_no'], $c_no);
                         
             foreach ($content as $i)
             {

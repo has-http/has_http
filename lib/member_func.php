@@ -55,5 +55,16 @@ function verify_id(){
     }
 }
 
+function check_sub(){
+    verify_id();
+    $s_id = $_SESSION['user_id'];
+    $sub_count = mysqli_fetch_row(custom_query("SELECT count(c_no) FROM demand WHERE s_id = '{$s_id}'"))[0];
+    if ($sub_count == '0' ){
+        return false;
+    }
+    else{
+        return true;
+    }
+}
 
 ?>
