@@ -4,7 +4,7 @@ const tbody = document.querySelector('tbody');
 const index_input = document.querySelector('.index_input');
 const max_length_text = document.getElementById('max_length');
 const probability = document.getElementById('probability');
-const max_probability = document.querySelector('.max_probability')
+const max_probability = document.querySelector('.max_probability');
 //block_list, prob_list는 이미 정의됨
 
 var selected_block_list = block_list[block_index];
@@ -23,7 +23,7 @@ function get_html(){
         inner_html += '<tr align="center" bgcolor="white">';
         inner_html += '<td>' + (i+1) + "교시</td>";
         for (var j=0; j<5; j++){
-            inner_html += '<td>' + null_check(selected_block_list[i][j]) + '</td>';
+            inner_html += '<td' + style_check(fixed_list[i][j])+ '>' + null_check(selected_block_list[i][j]) + '</td>';
         }
         inner_html += "</tr>";
     }
@@ -37,10 +37,19 @@ function null_check(x){
     return x;
 }
 
+function style_check(x){
+    if (x == 1){
+        return ' style = "background-color: rgb(255, 255, 255)"';
+    }
+    else{
+        return '';
+    }
+}
+
 function set_html(){
     tbody.innerHTML = get_html();
     index_input.value = block_index + 1; //보이는건 +1
-    probability.innerHTML = prob_list[block_index] * 100 + '%';
+    probability.innerHTML = Math.round(prob_list[block_index]*1000) /10 + '%';
 }
 
 function process_input(){
