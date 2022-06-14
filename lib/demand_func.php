@@ -73,11 +73,14 @@ function get_probability_improved($teach_dict, $demand_arr){ //개선된 것
 }
 
 function get_count_arr(){
-    // count_arr[$c_no][$t_no] = count(s_id)
-    $sql = "SELECT teach.c_no, teach.t_no, count(s_id)  FROM teach LEFT OUTER JOIN demand ON demand.c_no = teach.c_no AND demand.t_no = teach.t_no group by teach.c_no, teach.t_no";
+    // count_arr[$c_no][$t_no] = count(s_id) by demand
+    verify_id();
+    $s_id = $_SESSION['user_id'];
+    $sql = "SELECT teach.c_no, teach.t_no, count(s_id)  FROM teach LEFT OUTER JOIN demand 
+            ON demand.c_no = teach.c_no AND demand.t_no = teach.t_no 
+            group by teach.c_no, teach.t_no";
     $result = custom_query($sql);
     $count_arr = array();
-    
     
     while ($row = mysqli_fetch_row($result)){
         $c_no = $row[0];
@@ -87,14 +90,15 @@ function get_count_arr(){
         $count_arr[$c_no][$row[1]] = $row[2]; 
     }
 
+    
     return $count_arr;
 }
 
-function get_probability_improved_fast($teach_dict, $demand_arr, $count_arr){ // 더 개선된 것
-    
+function get_probability_improved_fast($teach_dict, $tno_list, $count_arr, $demand_arr){ 
+    // 더 개선된 것, sql문을 전부 빼내고 demand와 tno_list가 다를 수 있음 고려   
 
     $proballity = 1;
-    foreach ($demand_arr as $c_no => $t_no){
+    foreach ($tno_list as $c_no => $t_no){
         if (!isset($t_no)){
             return -1;
         }
@@ -104,9 +108,9 @@ function get_probability_improved_fast($teach_dict, $demand_arr, $count_arr){ //
 
         $demand_count = $count_arr[$c_no][$t_no];
 
+
         $x = $teach_dict[$c_no]['count'];
         $temp2 = ($t_max * $x) - $demand_count;
-
         $virtual_num = ($temp2 - ($temp2 % $x)) / $x;
         
         $t_dem += $virtual_num;
@@ -122,9 +126,10 @@ function get_all_probability($all_tno_list){
     $teach_dict = get_teach_dict();
     $arr = array();
     $count_arr = get_count_arr();
+    $demand_arr = get_demand_tno();
 
     foreach($all_tno_list as $tno_list){
-        array_push($arr, get_probability_improved_fast($teach_dict, $tno_list, $count_arr));
+        array_push($arr, get_probability_improved_fast($teach_dict, $tno_list, $count_arr, $demand_arr));
     }
     return $arr;
 }
@@ -167,5 +172,33 @@ function get_fix_selected($c_no) { // 고정된 분반만 'selected' 아니면 '
         }
     }
     return $arr;
+}
+
+function get_fix_block(){ // block[i][j] = fix됐으면 1 아니면 0 리턴
+    $conn = mysql_connect();
+    $block = array_fill(0, 7, array_fill(0, 5, 0));
+    $fixed_array = get_fixed_tno();
+
+    foreach ($fixed_array as $c_no => $t_no){
+        
+        $sql = "SELECT b_1, b_2, b_3, b_4 FROM brick 
+                INNER JOIN teach ON brick.b_code = teach.b_code WHERE teach.c_no = {$c_no} AND teach.t_no = {$t_no}";
+        $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+        
+        $row = mysqli_fetch_row($result);
+        
+        foreach($row as $brick) {
+            if (!isset($brick)){
+                break;
+            }
+
+            $j = $brick % 10;
+            $i = ($brick - $j) / 10;
+
+            $block[$i][$j] = 1;
+        }
+    }
+    mysqli_close($conn);
+    return $block;
 }
 ?>

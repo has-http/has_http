@@ -5,8 +5,17 @@ require_once 'lib/vendor/autoload.php';
 $CLIENT_ID = "322197737705-ibo2f1h9of611g71k832uo8u7bt6mlmp.apps.googleusercontent.com";
 if (!isset($_POST['id_token'])){
     if (isset($_POST['password'])){
+      if($_POST['password'] == 'HS203!bn'){ //향후 수정
+        session_start();
+        $_SESSION['user_id'] = $_POST['user_id'];
+        header("Location: ../home/home2.php");
+        exit;
+      }
+      else{
         echo "<script>alert('자체 로그인 기능은 아직 구현되지 않았습니다 구글 로그인을 이용해주세요');";
         echo "window.location = 'login.php';</script>"; 
+      }
+
     }
     else{
         echo "<script>alert('잘못된 접근입니다');";
