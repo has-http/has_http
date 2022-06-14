@@ -24,8 +24,8 @@ if(isset($_SESSION))
           </form>
             
          <div class="links">
-             <a href="">회원가입</a>
-             <a href="">비밀번호를 잊어버리셨나요?</a>
+             <a href="login_process.php">회원가입</a>
+             <a href="login_process.php">비밀번호를 잊어버리셨나요?</a>
         </div>
         <div class = "g_id_signin"
             data-type="icon"

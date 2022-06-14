@@ -17,7 +17,7 @@ require_once('../lib/member_func.php'); verify_id();
         <ul>
             <li><a href="enrollment.php">수강신청하기</a></li>
             <li><a href="enroll_subjInfo.php">과목 선택</a></li>
-            <li><a href="enroll_pre.php">pre-수강신청</a></li>
+            <li><a href="demand.php">pre-수강신청</a></li>
         </ul>
     </div>
     <div class="main">
