@@ -27,25 +27,11 @@ function get_teach_dict(){
     return $teach_dict;
 }
 
-function get_probability($teach_dict, $demand_arr){
-    $proballity = 1;
-    foreach ($demand_arr as $c_no => $t_no){
-        if (!isset($t_no)){
-            return -1;
-        }
-        $temp = $teach_dict[$c_no][$t_no];
-        $t_dem = $temp[0];
-        $t_max = $temp[1];
-        if ($t_max < $t_dem){
-            $proballity *= $t_max / $t_dem;
-        }
-    }
-    return $proballity;
-}
+
 
 function get_probability_improved($teach_dict, $demand_arr){ //개선된 것
 
-    $proballity = 1;
+    $probability = 1;
     foreach ($demand_arr as $c_no => $t_no){
         if (!isset($t_no)){
             return -1;
@@ -54,21 +40,34 @@ function get_probability_improved($teach_dict, $demand_arr){ //개선된 것
         $t_dem = $temp[0];
         $t_max = $temp[1];
 
-        $sql = "SELECT count(s_id) FROM demand WHERE c_no = {$c_no} AND t_no = {$t_no}";
+        $sql = "SELECT count(s_id) FROM demand WHERE c_no = {$c_no}";
         $demand_count = mysqli_fetch_row(custom_query($sql))[0];
 
-        $x = $teach_dict[$c_no]['count'];
-        $temp2 = ($t_max * $x) - $demand_count;
-
-        $virtual_num = ($temp2 - ($temp2 % $x)) / $x;
+        $t_count = $teach_dict[$c_no]['count']; // 과목의 분반 개수
+        $not_demand_count = ($t_max * $t_count) - $demand_count; //수요조사에 참여하지 않은 인원
+        $virtual_num = ($not_demand_count - ($not_demand_count % $t_count)) / $t_count;       
         
         $t_dem += $virtual_num;
         
+        //잔여 인원 고려
+        $not_considered_virtual = $not_demand_count % $t_count;
+        $enroll_probability = $not_considered_virtual / $t_count;
+        $not_enroll_probability = 1 - $enroll_probability;
+           
+
         if ($t_max < $t_dem){
-            $proballity *= $t_max / $t_dem;
+            $not_enroll_probability *= $t_max / $t_dem;
         }
+
+        $t_dem += 1;
+        if ($t_max < $t_dem){
+            $enroll_probability *= $t_max / $t_dem;
+        }
+
+        $probability *= ($not_enroll_probability + $enroll_probability);
+        
     }
-    return $proballity;
+    return $probability;
 }
 
 function get_cno_count(){
@@ -95,7 +94,7 @@ function get_cno_count(){
 function get_probability_improved_fast($teach_dict, $tno_list, $count_arr, $demand_arr){ 
     // 더 개선된 것, sql문을 전부 빼내고 demand와 tno_list가 다를 수 있음 고려   
 
-    $proballity = 1;
+    $probability = 1;
     foreach ($tno_list as $c_no => $t_no){
         if (!isset($t_no)){
             return -1;
@@ -117,17 +116,31 @@ function get_probability_improved_fast($teach_dict, $tno_list, $count_arr, $dema
         }
 
 
-        $x = $teach_dict[$c_no]['count'];
-        $not_demand_count = ($t_max * $x) - $demand_count; //수요조사에 참여하지 않은 인원
-        $virtual_num = ($not_demand_count - ($not_demand_count % $x)) / $x;
+        $t_count = $teach_dict[$c_no]['count']; // 과목의 분반 개수
+        $not_demand_count = ($t_max * $t_count) - $demand_count; //수요조사에 참여하지 않은 인원
+        $virtual_num = ($not_demand_count - ($not_demand_count % $t_count)) / $t_count;       
         
         $t_dem += $virtual_num;
         
+        //잔여 인원 고려
+        $not_considered_virtual = $not_demand_count % $t_count;
+        $enroll_probability = $not_considered_virtual / $t_count;
+        $not_enroll_probability = 1 - $enroll_probability;
+           
+
         if ($t_max < $t_dem){
-            $proballity *= $t_max / $t_dem;
+            $not_enroll_probability *= $t_max / $t_dem;
         }
+
+        $t_dem += 1;
+        if ($t_max < $t_dem){
+            $enroll_probability *= $t_max / $t_dem;
+        }
+
+        $probability *= ($not_enroll_probability + $enroll_probability);
+        
     }
-    return $proballity;
+    return $probability;
 }
 
 function get_all_probability($all_tno_list){
