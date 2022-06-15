@@ -47,8 +47,7 @@ tr, td{
     background-color: #30977a;
     font-weight:bold;
     font-size:15px;
-    margin-top: 80px;
-    margin-left:525px;
+    margin: 50px 0 30px 525px;
     float:left;
     cursor: pointer;
     width:100px;
