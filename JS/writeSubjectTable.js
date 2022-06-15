@@ -39,7 +39,7 @@ function null_check(x){
 
 function style_check(x){
     if (x == 1){
-        return ' style = "background-color: rgb(255, 255, 255)"';
+        return ' style = "background-color: rgb(227, 209, 180)"';
     }
     else{
         return '';
