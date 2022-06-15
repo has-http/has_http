@@ -24,6 +24,13 @@
                 </tbody>
             </table>
         </div>
+        <?php
+            require_once('../lib/demand_func.php');
+            $probability = get_probability_improved(get_teach_dict(), get_demand_tno());
+            if ($probability >= 0){
+                echo '<h1 style="margin:30px 0 50px 260px;">다음 시간표를 수강신청하는 데 성공할 확률은 ' . $probability* 100 . ' % 입니다.</h1>';
+            }
+        ?>
     </div>
 
 </body>
