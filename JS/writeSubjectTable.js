@@ -49,7 +49,7 @@ function style_check(x){
 function set_html(){
     tbody.innerHTML = get_html();
     index_input.value = block_index + 1; //보이는건 +1
-    probability.innerHTML = Math.round(prob_list[block_index]*1000) /10 + '%';
+    probability.innerHTML = Math.round(prob_list[block_index]*10000) /100 + '%';
 }
 
 function process_input(){
