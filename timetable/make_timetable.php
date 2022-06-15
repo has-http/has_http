@@ -107,7 +107,7 @@
                 ?>
                 </div>
             </div>
-            <button class="submit" style="color:#fff;">확인</button>
+            <button class="submit" style="color:#fff;cursor:pointer;">확인</button>
         </form>
     </div>
 </body>
