@@ -54,6 +54,8 @@ button{
 
 .selecFixed{
     margin-left:65px;
+    display:flex;
+    flex-direction: column;
 }
 
 .selecFixed > h2{
@@ -72,7 +74,7 @@ select, option{
     width:105px;
 }
 
-.selecFixed > ul > li{
+.selecFixed > .label > ul > li{
     width:110px;
     height:25px;
     text-align:center;
@@ -100,3 +102,5 @@ select, option{
 #probability {
     color:#000;
 }
+
+
