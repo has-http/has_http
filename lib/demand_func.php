@@ -149,6 +149,10 @@ function get_all_probability($all_tno_list){
     $count_arr = get_cno_count();
     $demand_arr = get_demand_tno();
 
+    if (count($all_tno_list) == 0){
+        return array(0);
+    }
+
     foreach($all_tno_list as $tno_list){
         array_push($arr, get_probability_improved_fast($teach_dict, $tno_list, $count_arr, $demand_arr));
     }

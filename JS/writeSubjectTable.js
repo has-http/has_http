@@ -14,6 +14,9 @@ const block_length = block_list.length;
 if (block_length == 0){
     selected_block_list = null_list;
     block_index = -1;
+    prob_list = [0];
+    max_plob_index = 0;
+    fixed_list = null_list;
 }
 
 
