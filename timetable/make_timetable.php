@@ -51,9 +51,9 @@
                     
                     <script>
                         var block_list = <?php echo json_encode($list) ?>;
-                        var prob_list = <?php echo json_encode($all_probabillity_list) ?>;
+                        var prob_list = <?php echo json_encode($all_probabillity_list);?>;
                         var block_index = <?php echo get_table_index($tno_list); ?>;
-                        var max_plob_index =  <?php echo array_search(max($all_probabillity_list), $all_probabillity_list); ?> ;
+                        var max_plob_index =  <?php echo array_search(max($all_probabillity_list), $all_probabillity_list);?> ;
                         var fixed_list = <?php echo json_encode(get_fix_block());?>;
                     </script>
                 </tbody>
